@@ -40,8 +40,8 @@
         <h4 class="bftr-col-h">Help</h4>
         <ul class="bftr-links">
           <li><a href="{{ routes.root_url }}pages/contact">Contact Us</a></li>
-          <li><a href="{{ shop.url }}/policies/refund-policy">Returns &amp; Exchanges</a></li>
-          <li><a href="{{ shop.url }}/policies/shipping-policy">Shipping Info</a></li>
+          <li><a href="{{ routes.root_url }}policies/refund-policy">Returns &amp; Exchanges</a></li>
+          <li><a href="{{ routes.root_url }}policies/shipping-policy">Shipping Info</a></li>
         </ul>
       </div>
 
@@ -60,8 +60,8 @@
     <div class="bftr-bottom">
       <p class="bftr-copy">&copy; {{ 'now' | date: '%Y' }} Bronceada &middot; Boutique &middot; Austin, TX</p>
       <div class="bftr-legal">
-        <a href="{{ shop.url }}/policies/privacy-policy">Privacy Policy</a>
-        <a href="{{ shop.url }}/policies/terms-of-service">Terms of Service</a>
+        <a href="{{ routes.root_url }}/policies/privacy-policy">Privacy Policy</a>
+        <a href="{{ routes.root_url }}/policies/terms-of-service">Terms of Service</a>
         <a href="{{ routes.root_url }}pages/data-sharing-opt-out">Accessibility</a>
       </div>
       <p class="bftr-credit">Designed by <a href="https://phenry.dev" target="_blank" rel="noopener">Phillip Henry</a></p>
