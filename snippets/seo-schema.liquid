@@ -1,0 +1,163 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#website",
+      "url": {{ shop.url | json }},
+      "name": {{ shop.name | json }},
+      "description": {{ shop.description | default: "Austin boutique specializing in one-of-a-kind, hand-picked pieces." | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ClothingStore",
+      "@id": "{{ shop.url }}/#business",
+      "name": "Bronceada",
+      "alternateName": "Bronceada Boutique",
+      "description": "Austin boutique specializing in one-of-a-kind, hand-picked pieces. Located at Lakeline Mall in Cedar Park, TX.",
+      "url": {{ shop.url | json }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ 'BronceadaLogo.png' | asset_url | json }}
+      },
+      "image": {{ 'lifestyle-beach-banner.jpg' | asset_url | json }},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "11200 Lakeline Mall Dr, Upper Level",
+        "addressLocality": "Cedar Park",
+        "addressRegion": "TX",
+        "postalCode": "78613",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "12:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "11:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "21:00"
+        }
+      ],
+      "email": "reachbronceada@yahoo.com",
+      "priceRange": "$$",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Cash, Credit Card",
+      "areaServed": [
+        { "@type": "City", "name": "Cedar Park", "sameAs": "https://en.wikipedia.org/wiki/Cedar_Park,_Texas" },
+        { "@type": "City", "name": "Austin", "sameAs": "https://en.wikipedia.org/wiki/Austin,_Texas" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/shopbronceada",
+        "https://www.tiktok.com/@shopbronceada"
+      ]
+    }
+
+    {%- if request.page_type == 'product' -%}
+    ,{
+      "@type": "Product",
+      "@id": "{{ canonical_url }}#product",
+      "name": {{ product.title | json }},
+      "description": {{ product.description | strip_html | strip_newlines | truncate: 500 | json }},
+      "image": [
+        {%- for image in product.images limit: 5 -%}
+          {{ image | image_url: width: 1200 | json }}{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ],
+      "brand": {
+        "@type": "Brand",
+        "name": "Bronceada"
+      },
+      "sku": {{ product.selected_or_first_available_variant.sku | default: product.id | json }},
+      "offers": {
+        "@type": "Offer",
+        "url": {{ canonical_url | json }},
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "price": {{ product.price | divided_by: 100.00 }},
+        "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Bronceada",
+          "@id": "{{ shop.url }}/#business"
+        }
+      }
+    }
+    {%- endif -%}
+
+    {%- if request.page_type == 'collection' -%}
+    ,{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ shop.url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+      ]
+    }
+    {%- endif -%}
+
+    {%- if request.page_type == 'product' -%}
+    ,{
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ shop.url | json }}
+        },
+        {%- if collection -%}
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": {{ canonical_url | json }}
+        }
+        {%- else -%}
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": {{ canonical_url | json }}
+        }
+        {%- endif -%}
+      ]
+    }
+    {%- endif -%}
+
+  ]
+}
+</script>

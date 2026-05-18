@@ -1,0 +1,77 @@
+<section class="brn-pol">
+  <div class="brn-pol__inner">
+    <h1 class="brn-pol__h1">{{ policy.title }}</h1>
+    <div class="brn-pol__body rte">
+      {{ policy.body }}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .brn-pol {
+    padding: 72px 0 96px;
+  }
+
+  .brn-pol__inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .brn-pol__h1 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin: 0 0 40px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid rgba(17, 17, 17, 0.12);
+  }
+
+  .brn-pol__body {
+    font-size: 0.95rem;
+    line-height: 1.78;
+    color: rgba(17, 17, 17, 0.72);
+  }
+
+  .brn-pol__body h2,
+  .brn-pol__body h3 {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #111;
+    margin: 2em 0 0.6em;
+  }
+
+  .brn-pol__body h2 { font-size: 1.1rem; }
+  .brn-pol__body h3 { font-size: 0.95rem; }
+
+  .brn-pol__body p { margin: 0 0 1.1em; }
+
+  .brn-pol__body a {
+    color: #0A9CB5;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .brn-pol__body a:hover { color: #111; }
+
+  .brn-pol__body ul,
+  .brn-pol__body ol {
+    padding-left: 1.4em;
+    margin: 0 0 1.1em;
+  }
+
+  .brn-pol__body li { margin-bottom: 0.4em; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Policy",
+  "tag": "div",
+  "class": "section-wrapper"
+}
+{% endschema %}

@@ -366,13 +366,14 @@
 
 {% stylesheet %}
   body {
-    --header-height: 60px;
+    --header-height: 80px;
     --header-group-height: var(--header-height);
     --transparent-header-offset-boolean: 0; /* stylelint-disable-line declaration-property-value-disallowed-list */
   }
 
   .header {
     display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   #header-component :is(.header-menu, .dropdown-localization) {
@@ -737,6 +738,12 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+    border-radius: 50%;
+    transition: background var(--animation-speed) var(--animation-easing);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
   }
 
   .header-actions__action .svg-wrapper {

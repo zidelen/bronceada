@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Ritual",
-    "theme_version": "3.3.1",
-    "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_name": "Bronceada Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Phillip Henry",
+    "theme_documentation_url": "https://phenry.dev",
+    "theme_support_url": "https://phenry.dev"
   },
   {
     "name": "t:names.logo_and_favicon",

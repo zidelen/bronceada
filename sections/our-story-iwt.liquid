@@ -1,0 +1,183 @@
+<div class="brn-iwt">
+
+  <div class="brn-iwt__img">
+    <img
+      src="{{ 'Tops.jpg' | asset_url }}"
+      alt="About Bronceada"
+      loading="lazy"
+      width="900"
+      height="900"
+    >
+  </div>
+
+  <div class="brn-iwt__copy">
+    <span class="brn-iwt__eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="brn-iwt__h2">{{ section.settings.heading | newline_to_br }}</h2>
+    <p class="brn-iwt__body">{{ section.settings.body }}</p>
+    <a href="{{ section.settings.button_url }}" class="brn-iwt__btn brn-iwt__btn--blk">
+      {{ section.settings.button_label }}
+    </a>
+  </div>
+
+</div>
+
+{% stylesheet %}
+  .brn-iwt {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+
+  .brn-iwt--rev .brn-iwt__img { order: 2; }
+  .brn-iwt--rev .brn-iwt__copy { order: 1; }
+
+  .brn-iwt__img {
+    overflow: hidden;
+  }
+
+  .brn-iwt__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brn-iwt__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 80px;
+    background: #FFFCEE;
+  }
+
+  .brn-iwt__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0A9CB5;
+    margin-bottom: 14px;
+  }
+
+  .brn-iwt__h2 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+    margin: 0 0 18px;
+  }
+
+  .brn-iwt__body {
+    font-size: 0.94rem;
+    line-height: 1.72;
+    color: rgba(17, 17, 17, 0.55);
+    margin: 0 0 30px;
+    max-width: 440px;
+  }
+
+  .brn-iwt__btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .brn-iwt__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .brn-iwt__btn--blk {
+    background: #000;
+    color: #fff;
+  }
+
+  .brn-iwt__btn--blk:hover {
+    background: #FFEF39;
+    color: #000;
+  }
+
+  .brn-iwt__btn--out {
+    background: transparent;
+    color: #000;
+    border: 1.5px solid #000;
+  }
+
+  .brn-iwt__btn--out:hover {
+    background: #FFEF39;
+    color: #000;
+    border-color: #FFEF39;
+  }
+
+  @media (max-width: 768px) {
+    .brn-iwt {
+      grid-template-columns: 1fr;
+    }
+
+    .brn-iwt--rev .brn-iwt__img,
+    .brn-iwt--rev .brn-iwt__copy {
+      order: unset;
+    }
+
+    .brn-iwt__img {
+      min-height: 340px;
+    }
+
+    .brn-iwt__copy {
+      padding: 40px 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Our Story",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Story"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Born in Austin,\nBuilt Different"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Bronceada is an Austin boutique specializing in one-of-a-kind pieces. Every item is hand-picked — nothing mass-produced, nothing you'll see everywhere else. Find us at Lakeline Mall in Cedar Park."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Learn Our Story"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story"
+    }
+  ]
+}
+{% endschema %}

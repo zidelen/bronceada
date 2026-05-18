@@ -1,87 +1,260 @@
 
+{% liquid
+  assign bg_url = '\lifestyle-beach-banner.jpg' | asset_url
+%}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
-  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="bftr-footer"
+  style="--bftr-bg: url({{ bg_url }})"
 >
-  {% liquid
-    assign total_blocks = section.blocks.size
+  <div class="bftr">
+    <div class="bftr-grid">
 
-    # Grid layout calculations
-    assign grid_columns = total_blocks | at_most: 4
+      <div class="bftr-brand">
+        <div class="bftr-logo">
+          <img src="{{ 'BronceadaLogo.png' | asset_url }}" alt="Bronceada" width="160" height="38" style="height:38px;width:auto;filter:brightness(0) invert(1);">
+        </div>
+        <p class="bftr-desc">One-of-a-kind pieces, hand-picked and brought straight to Austin. Find us at Lakeline Mall in Cedar Park, TX.</p>
+        <div class="bftr-social">
+          <a href="https://www.instagram.com/shopbronceada" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@shopbronceada" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.84 4.84 0 0 1-1.01-.09z"/></svg>
+          </a>
+        </div>
+      </div>
 
-    # Calculate last row counts using modulo arithmetic
-    # last_row_count = (total_blocks - 1) % N + 1
-    assign last_row_count = total_blocks | minus: 1 | modulo: 4 | plus: 1
-    assign tablet_last_row_count = total_blocks | minus: 1 | modulo: 2 | plus: 1
+      <div>
+        <h4 class="bftr-col-h">Shop</h4>
+        <ul class="bftr-links">
+          <li><a href="{{ routes.root_url }}collections/new-arrivals">New Arrivals</a></li>
+          <li><a href="{{ routes.root_url }}collections/dress-collection">Dresses</a></li>
+          <li><a href="{{ routes.root_url }}collections/the-floral-collection">Sets</a></li>
+          <li><a href="{{ routes.root_url }}collections/statement-summer-collection">Tops &amp; Basics</a></li>
+          <li><a href="{{ routes.root_url }}collections/jewelry-collection">Accessories</a></li>
+        </ul>
+      </div>
 
-    # Check if there are orphaned elements (single item in last row)
-    assign has_isolated_grid_item_desktop = false
-    assign has_isolated_grid_item_tablet = false
+      <div>
+        <h4 class="bftr-col-h">Help</h4>
+        <ul class="bftr-links">
+          <li><a href="{{ routes.root_url }}pages/contact">Contact Us</a></li>
+          <li><a href="{{ shop.url }}/policies/refund-policy">Returns &amp; Exchanges</a></li>
+          <li><a href="{{ shop.url }}/policies/shipping-policy">Shipping Info</a></li>
+        </ul>
+      </div>
 
-    if total_blocks > 4 and last_row_count == 1
-      assign has_isolated_grid_item_desktop = true
-    endif
+      <div>
+        <h4 class="bftr-col-h">Visit Us</h4>
+        <p class="bftr-address">UL (Upper Level)<br>Lakeline Mall<br>11200 Lakeline Mall Dr<br>Cedar Park, TX 78613</p>
+        <ul class="bftr-links bftr-links--plain">
+          <li>Sun &nbsp;12:00pm – 6:00pm</li>
+          <li>Mon – Thu &nbsp;11:00am – 8:00pm</li>
+          <li>Fri – Sat &nbsp;10:00am – 9:00pm</li>
+        </ul>
+      </div>
 
-    if total_blocks == 5
-      assign has_isolated_grid_item_tablet = true
-    endif
-  %}
-  <div
-    class="
-      footer-content
-      spacing-style
-      {% if has_isolated_grid_item_desktop %}footer-content--isolated-grid-item-desktop{% endif %}
-      {% if has_isolated_grid_item_tablet %}footer-content--isolated-grid-item-tablet{% endif %}
-    "
-    style="
-      {%  render 'spacing-style', settings: section.settings %}
-      --footer-gap: {{ section.settings.gap }}px;
-      --grid-columns: {{ grid_columns }};
-      --last-row-count: {{ last_row_count }};
-      --tablet-last-row-count: {{ tablet_last_row_count }};
-    "
-  >
-    {% content_for 'blocks' %}
+    </div>
+
+    <div class="bftr-bottom">
+      <p class="bftr-copy">&copy; {{ 'now' | date: '%Y' }} Bronceada &middot; Boutique &middot; Austin, TX</p>
+      <div class="bftr-legal">
+        <a href="{{ shop.url }}/policies/privacy-policy">Privacy Policy</a>
+        <a href="{{ shop.url }}/policies/terms-of-service">Terms of Service</a>
+        <a href="{{ routes.root_url }}pages/data-sharing-opt-out">Accessibility</a>
+      </div>
+      <p class="bftr-credit">Designed by <a href="https://phenry.dev" target="_blank" rel="noopener">Phillip Henry</a></p>
+    </div>
   </div>
 </div>
 
 {% stylesheet %}
-  .footer-content {
-    contain: content;
-    content-visibility: auto;
+  .bftr-footer {
+    background-image: var(--bftr-bg);
+    background-size: cover;
+    background-position: center 60%;
+    position: relative;
+    color: #ffffff;
+    padding: 64px 0 32px;
+  }
+
+  .bftr-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 5, 0, 0.78);
+    pointer-events: none;
+  }
+
+  .bftr {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bftr-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--footer-gap);
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    margin-bottom: 48px;
   }
 
-  @media screen and (min-width: 750px) and (max-width: 989px) {
-    .footer-content {
-      grid-template-columns: repeat(min(var(--grid-columns), 3), 1fr);
-      grid-auto-flow: row;
-    }
+  .bftr-logo {
+    font-family: var(--font-heading--family);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #FFEF39;
+    margin-bottom: 14px;
+  }
 
-    .footer-content[style*='--grid-columns: 4'] {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .bftr-desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 280px;
+    margin-bottom: 22px;
+  }
 
-    .footer-content--isolated-grid-item-tablet > :last-child {
-      grid-column: 1 / -1;
+  .bftr-social {
+    display: flex;
+    gap: 10px;
+  }
+
+  .bftr-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.65);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+
+  .bftr-social a:hover {
+    border-color: #FFEF39;
+    color: #FFEF39;
+    background: rgba(255, 239, 57, 0.08);
+  }
+
+  .bftr-social svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .bftr-col-h {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #77F8FF;
+    margin-bottom: 18px;
+  }
+
+  .bftr-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .bftr-links a {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .bftr-links a:hover {
+    color: #ffffff;
+  }
+
+  .bftr-links--plain li {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .bftr-address {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .bftr-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bftr-copy {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.38);
+    margin: 0;
+  }
+
+  .bftr-credit {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.38);
+    margin: 0;
+  }
+
+  .bftr-credit a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .bftr-footer .bftr-credit a:hover {
+    color: #c9943a !important;
+  }
+
+  .bftr-legal {
+    display: flex;
+    gap: 22px;
+  }
+
+  .bftr-legal a {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.38);
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .bftr-legal a:hover {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  @media (max-width: 1100px) {
+    .bftr-grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
-  @media screen and (min-width: 990px) {
-    .footer-content {
-      grid-template-columns: repeat(var(--grid-columns), 1fr);
+  @media (max-width: 768px) {
+    .bftr-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
 
-    /* Single item centered */
-    .footer-content[style*='--grid-columns: 1'] {
-      justify-items: center;
-    }
-
-    .footer-content--isolated-grid-item-desktop > :last-child {
-      grid-column: 1 / -1;
+    .bftr-bottom {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 {% endstylesheet %}
@@ -92,163 +265,11 @@
   "class": "section-wrapper",
   "tag": "footer",
   "blocks": [
-    {
-      "type": "_divider"
-    },
-    {
-      "type": "@app"
-    },
-    {
-      "type": "button"
-    },
-    {
-      "type": "follow-on-shop"
-    },
-    {
-      "type": "group"
-    },
-    {
-      "type": "icon"
-    },
-    {
-      "type": "image"
-    },
-    {
-      "type": "menu"
-    },
-    {
-      "type": "payment-icons"
-    },
-    {
-      "type": "text"
-    },
-    {
-      "type": "logo"
-    },
-    {
-      "type": "jumbo-text"
-    },
-    {
-      "type": "social-links"
-    },
-    {
-      "type": "email-signup"
-    }
+    { "type": "@app" }
   ],
   "enabled_on": {
     "groups": ["footer"]
   },
-  "settings": [
-    {
-      "type": "select",
-      "id": "section_width",
-      "label": "t:settings.width",
-      "options": [
-        {
-          "value": "page-width",
-          "label": "t:options.page"
-        },
-        {
-          "value": "full-width",
-          "label": "t:options.full"
-        }
-      ],
-      "default": "page-width"
-    },
-    {
-      "type": "range",
-      "id": "gap",
-      "label": "t:settings.gap",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 0
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:content.padding"
-    },
-    {
-      "type": "range",
-      "id": "padding-block-start",
-      "label": "t:settings.top",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding-block-end",
-      "label": "t:settings.bottom",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 20
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:names.footer",
-      "category": "t:categories.footer",
-      "settings": {
-        "gap": 20,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 36,
-        "padding-block-end": 36
-      },
-      "blocks": {
-        "newsletter-group": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "gap": 6,
-            "width": "fill",
-            "inherit_color_scheme": true
-          },
-          "blocks": {
-            "newsletter-heading": {
-              "type": "text",
-              "settings": {
-                "text": "t:html_defaults.join_our_email_list",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "h3"
-              }
-            },
-            "newsletter-text": {
-              "type": "text",
-              "settings": {
-                "text": "t:html_defaults.get_exclusive_deals_and_early_access_to_new_products",
-                "width": "100%",
-                "alignment": "left",
-                "type_preset": "rte"
-              }
-            }
-          },
-          "block_order": ["newsletter-heading", "newsletter-text"]
-        },
-        "newsletter-form": {
-          "type": "email-signup",
-          "settings": {
-            "width": "fill"
-          }
-        }
-      },
-      "block_order": ["newsletter-group", "newsletter-form"]
-    }
-  ]
+  "settings": []
 }
 {% endschema %}

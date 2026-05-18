@@ -277,15 +277,17 @@
   }
 
   .menu-list__link {
-    font-family: var(--menu-top-level-font-family);
+    font-family: var(--font-body--family);
     font-style: var(--menu-top-level-font-style);
-    font-weight: var(--menu-top-level-font-weight);
-    font-size: var(--menu-top-level-font-size);
+    font-weight: 500;
+    font-size: 0.785rem;
     line-height: var(--menu-top-level-font-line-height);
-    text-transform: var(--menu-top-level-font-case);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--menu-top-level-font-color);
-    transition: color var(--animation-speed) var(--animation-easing);
+    transition: color 0.2s;
     text-decoration: none;
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -295,11 +297,7 @@
 
     &:hover,
     &:focus {
-      color: var(--menu-top-level-font-color);
-    }
-
-    @media screen and (min-width: 750px) {
-      font-size: var(--menu-top-level-font-size-desktop);
+      color: #FFEF39;
     }
   }
 
@@ -338,9 +336,14 @@
 
   /* stylelint-disable-next-line selector-max-specificity */
   .menu-list:not(:has(.menu-list__list-item:hover)) .menu-list__link--active,
-  .menu-list .menu-list__list-item:where(:hover, :focus-within) .menu-list__link,
+  .menu-list .menu-list__list-item:focus-within .menu-list__link,
   .menu-list .menu-list__list-item[slot='overflow'] .menu-list__link[aria-expanded='true'] {
     color: var(--menu-top-level-font-color);
+  }
+
+  /* stylelint-disable-next-line selector-max-specificity */
+  .menu-list .menu-list__list-item:hover .menu-list__link {
+    color: var(--color-primary);
   }
 
   .overflow-menu::part(list) {

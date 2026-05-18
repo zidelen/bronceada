@@ -1,0 +1,206 @@
+<section class="brn-cat">
+  <div class="brn-cat__header">
+    <span class="brn-cat__eyebrow">Find Your Look</span>
+    <h2 class="brn-cat__heading">Shop by Category</h2>
+  </div>
+
+  <div class="brn-cat__grid">
+
+    <a href="{{ routes.root_url }}collections/dress-collection" class="brn-cat__tile">
+      <img
+        src="{{ 'Dresses.jpg' | asset_url }}"
+        alt="Dresses – Bronceada"
+        loading="lazy"
+        width="800"
+        height="1060"
+      >
+      <div class="brn-cat__overlay"></div>
+      <div class="brn-cat__body">
+        <span class="brn-cat__name">Dresses</span>
+        <span class="brn-cat__cta">Shop Now</span>
+      </div>
+    </a>
+
+    <a href="{{ routes.root_url }}collections/the-floral-collection" class="brn-cat__tile">
+      <img
+        src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}"
+        alt="Sets – Bronceada"
+        loading="lazy"
+        width="800"
+        height="1060"
+      >
+      <div class="brn-cat__overlay"></div>
+      <div class="brn-cat__body">
+        <span class="brn-cat__name">Sets</span>
+        <span class="brn-cat__cta">Shop Now</span>
+      </div>
+    </a>
+
+    <a href="{{ routes.root_url }}collections/statement-summer-collection" class="brn-cat__tile">
+      <img
+        src="{{ 'Tops.jpg' | asset_url }}"
+        alt="Tops & Basics – Bronceada"
+        loading="lazy"
+        width="800"
+        height="1060"
+      >
+      <div class="brn-cat__overlay"></div>
+      <div class="brn-cat__body">
+        <span class="brn-cat__name">Tops &amp; Basics</span>
+        <span class="brn-cat__cta">Shop Now</span>
+      </div>
+    </a>
+
+    <a href="{{ routes.root_url }}collections/jewelry-collection" class="brn-cat__tile">
+      <img
+        src="{{ 'Jewlery.jpg' | asset_url }}"
+        alt="Accessories – Bronceada"
+        loading="lazy"
+        width="800"
+        height="1060"
+      >
+      <div class="brn-cat__overlay"></div>
+      <div class="brn-cat__body">
+        <span class="brn-cat__name">Accessories</span>
+        <span class="brn-cat__cta">Shop Now</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .brn-cat {
+    padding: 80px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .brn-cat__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .brn-cat__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #b07d3a;
+    margin-bottom: 12px;
+  }
+
+  .brn-cat__heading {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #111;
+    margin: 0;
+  }
+
+  .brn-cat__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .brn-cat__tile {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    aspect-ratio: 3 / 4;
+  }
+
+  .brn-cat__tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .brn-cat__tile:hover img {
+    transform: scale(1.04);
+  }
+
+  .brn-cat__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 6, 0, 0.65) 0%, rgba(10, 6, 0, 0.08) 55%);
+    pointer-events: none;
+  }
+
+  .brn-cat__body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #fff;
+  }
+
+  .brn-cat__name {
+    font-family: var(--font-heading--family);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .brn-cat__cta {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.78;
+    transition: opacity 0.2s;
+  }
+
+  .brn-cat__tile:hover .brn-cat__cta {
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .brn-cat__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .brn-cat {
+      padding: 56px 16px;
+    }
+
+    .brn-cat__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .brn-cat__name {
+      font-size: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category Grid",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Category Grid"
+    }
+  ]
+}
+{% endschema %}

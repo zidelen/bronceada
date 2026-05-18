@@ -1,0 +1,213 @@
+<div class="brn-iwt brn-iwt--rev">
+
+  <div class="brn-iwt__img">
+    <img
+      src="{{ 'Jewlery.jpg' | asset_url }}"
+      alt="Bronceada Community"
+      loading="lazy"
+      width="900"
+      height="900"
+    >
+  </div>
+
+  <div class="brn-iwt__copy">
+    <span class="brn-iwt__eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="brn-iwt__h2">{{ section.settings.heading | newline_to_br }}</h2>
+    <p class="brn-iwt__body">{{ section.settings.body }}</p>
+    <div class="brn-iwt__btns">
+      <a
+        href="{{ section.settings.primary_url }}"
+        class="brn-iwt__btn brn-iwt__btn--blk"
+        target="_blank"
+        rel="noopener"
+      >{{ section.settings.primary_label }}</a>
+      <a
+        href="{{ section.settings.secondary_url }}"
+        class="brn-iwt__btn brn-iwt__btn--out"
+        target="_blank"
+        rel="noopener"
+      >{{ section.settings.secondary_label }}</a>
+    </div>
+  </div>
+
+</div>
+
+{% stylesheet %}
+  .brn-iwt {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+
+  .brn-iwt--rev .brn-iwt__img { order: 2; }
+  .brn-iwt--rev .brn-iwt__copy { order: 1; }
+
+  .brn-iwt__img {
+    overflow: hidden;
+  }
+
+  .brn-iwt__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .brn-iwt__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 80px;
+    background: #FFFCEE;
+  }
+
+  .brn-iwt__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0A9CB5;
+    margin-bottom: 14px;
+  }
+
+  .brn-iwt__h2 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.7rem, 3vw, 2.7rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+    margin: 0 0 18px;
+  }
+
+  .brn-iwt__body {
+    font-size: 0.94rem;
+    line-height: 1.72;
+    color: rgba(17, 17, 17, 0.55);
+    margin: 0 0 30px;
+    max-width: 440px;
+  }
+
+  .brn-iwt__btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .brn-iwt__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 28px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .brn-iwt__btn--blk {
+    background: #000;
+    color: #fff;
+  }
+
+  .brn-iwt__btn--blk:hover {
+    background: #FFEF39;
+    color: #000;
+  }
+
+  .brn-iwt__btn--out {
+    background: transparent;
+    color: #000;
+    border: 1.5px solid #000;
+  }
+
+  .brn-iwt__btn--out:hover {
+    background: #FFEF39;
+    color: #000;
+    border-color: #FFEF39;
+  }
+
+  @media (max-width: 768px) {
+    .brn-iwt {
+      grid-template-columns: 1fr;
+    }
+
+    .brn-iwt--rev .brn-iwt__img,
+    .brn-iwt--rev .brn-iwt__copy {
+      order: unset;
+    }
+
+    .brn-iwt__img {
+      min-height: 340px;
+    }
+
+    .brn-iwt__copy {
+      padding: 40px 24px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Community",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Stay Connected"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the\nBronceada\nCommunity"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Our community is everything. Follow us on Instagram and TikTok for new arrivals, styling inspo, and behind-the-scenes from market. Tag us in your looks — we love seeing you wear your finds."
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Label",
+      "default": "Follow on Instagram"
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Label",
+      "default": "Follow on TikTok"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Community"
+    }
+  ]
+}
+{% endschema %}

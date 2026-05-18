@@ -1,0 +1,227 @@
+{% assign col = collections[section.settings.collection] %}
+
+<section class="brn-na">
+  <div class="brn-na__inner">
+
+    <div class="brn-na__hdr">
+      <div>
+        <span class="brn-na__eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 class="brn-na__h2">{{ section.settings.heading }}</h2>
+      </div>
+      <a href="{{ col.url }}" class="brn-na__view-all">View All</a>
+    </div>
+
+    <div class="brn-na__grid">
+      {% for product in col.products limit: section.settings.max_products %}
+        <product-card class="brn-na__card product-card" data-product-id="{{ product.id }}">
+          <a href="{{ product.url }}" class="visually-hidden" ref="productCardLink" tabindex="-1" aria-hidden="true">{{ product.title }}</a>
+
+          <div class="brn-na__card-img" style="--quick-add-display:{% if settings.quick_add %}flex{% else %}none{% endif %};--quick-add-mobile-display:{% if settings.mobile_quick_add %}flex{% else %}none{% endif %};--quick-add-mobile-opacity:{% if settings.mobile_quick_add %}1{% else %}0{% endif %}">
+            <a href="{{ product.url }}" class="brn-na__img-link" tabindex="-1" aria-hidden="true">
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="600"
+                  height="800"
+                >
+              {%- endif -%}
+            </a>
+            {%- if product.tags contains 'new' -%}
+              <span class="brn-na__badge">New</span>
+            {%- endif -%}
+            {% render 'quick-add', product: product, section_id: section.id %}
+          </div>
+
+          <a href="{{ product.url }}" class="brn-na__title">{{ product.title }}</a>
+          <p class="brn-na__price">{{ product.price | money }}</p>
+
+        </product-card>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .brn-na {
+    padding: 64px 0;
+  }
+
+  .brn-na__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .brn-na__hdr {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .brn-na__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #0A9CB5;
+    margin-bottom: 7px;
+  }
+
+  .brn-na__h2 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .brn-na__view-all {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1.5px solid #111;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .brn-na__view-all:hover {
+    color: #0A9CB5;
+    border-color: #0A9CB5;
+  }
+
+  .brn-na__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  product-card.brn-na__card {
+    display: block;
+    position: relative;
+  }
+
+  .brn-na__card-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: #f4f4f4;
+    margin-bottom: 13px;
+  }
+
+  .brn-na__img-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .brn-na__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+  }
+
+  product-card.brn-na__card:hover .brn-na__card-img img {
+    transform: scale(1.04);
+  }
+
+  .brn-na__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #FFEF39;
+    color: #000;
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    z-index: 1;
+  }
+
+  .brn-na__title {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin: 0 0 4px;
+    color: #111;
+    text-decoration: none;
+  }
+
+  .brn-na__title:hover {
+    text-decoration: underline;
+  }
+
+  .brn-na__price {
+    font-size: 0.92rem;
+    color: rgba(17, 17, 17, 0.55);
+    margin: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .brn-na__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .brn-na__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "New Arrivals",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products are pulled automatically from this collection."
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Products to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Just Landed"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New Arrivals"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals"
+    }
+  ]
+}
+{% endschema %}
