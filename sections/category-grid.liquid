@@ -1,10 +1,13 @@
 <section class="brn-cat">
-  <div class="brn-cat__header">
-    <span class="brn-cat__eyebrow">Find Your Look</span>
-    <h2 class="brn-cat__heading">Shop by Category</h2>
-  </div>
+  <div class="brn-cat__inner">
+    <div class="brn-cat__header">
+      <div>
+        <span class="brn-cat__eyebrow">Find Your Look</span>
+        <h2 class="brn-cat__heading">Shop by Category</h2>
+      </div>
+    </div>
 
-  <div class="brn-cat__grid">
+    <div class="brn-cat__grid">
 
     <a href="{{ routes.root_url }}collections/dress-collection" class="brn-cat__tile">
       <img
@@ -66,36 +69,43 @@
       </div>
     </a>
 
+    </div>
   </div>
 </section>
 
 {% stylesheet %}
   .brn-cat {
-    padding: 80px 24px;
+    padding: 64px 0;
+  }
+
+  .brn-cat__inner {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 28px;
   }
 
   .brn-cat__header {
-    text-align: center;
-    margin-bottom: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 36px;
   }
 
   .brn-cat__eyebrow {
     display: block;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
-    color: #b07d3a;
-    margin-bottom: 12px;
+    color: #0A9CB5;
+    margin-bottom: 7px;
   }
 
   .brn-cat__heading {
     font-family: var(--font-heading--family);
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #111;
     margin: 0;
@@ -104,7 +114,7 @@
   .brn-cat__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 14px;
   }
 
   .brn-cat__tile {
@@ -121,17 +131,17 @@
     object-fit: cover;
     object-position: center top;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
   }
 
   .brn-cat__tile:hover img {
-    transform: scale(1.04);
+    transform: scale(1.06);
   }
 
   .brn-cat__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 6, 0, 0.65) 0%, rgba(10, 6, 0, 0.08) 55%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 55%);
     pointer-events: none;
   }
 
@@ -140,7 +150,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 24px 20px;
+    padding: 22px 18px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -149,7 +159,7 @@
 
   .brn-cat__name {
     font-family: var(--font-heading--family);
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -159,34 +169,19 @@
   .brn-cat__cta {
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    opacity: 0.78;
-    transition: opacity 0.2s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+    padding-bottom: 1px;
   }
 
-  .brn-cat__tile:hover .brn-cat__cta {
-    opacity: 1;
-  }
-
-  @media (max-width: 900px) {
-    .brn-cat__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .brn-cat {
-      padding: 56px 16px;
+      padding: 48px 0;
     }
 
     .brn-cat__grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .brn-cat__name {
-      font-size: 1rem;
     }
   }
 {% endstylesheet %}

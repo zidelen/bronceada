@@ -1,0 +1,187 @@
+<div class="brn-sale">
+  {%- for block in section.blocks -%}
+    <div
+      class="brn-sale__panel"
+      style="--brn-sale-img: url({{ block.settings.image | image_url: width: 1200 }})"
+      {{ block.shopify_attributes }}
+    >
+      <div class="brn-sale__overlay"></div>
+      <div class="brn-sale__content">
+        {%- if block.settings.eyebrow != blank -%}
+          <span class="brn-sale__eyebrow">{{ block.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if block.settings.heading != blank -%}
+          <h3 class="brn-sale__h3">{{ block.settings.heading | newline_to_br }}</h3>
+        {%- endif -%}
+        {%- if block.settings.button_label != blank -%}
+          <a href="{{ block.settings.button_url }}" class="brn-sale__btn">{{ block.settings.button_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</div>
+
+{% stylesheet %}
+  .brn-sale {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brn-sale__panel {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .brn-sale__panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--brn-sale-img);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.55s ease;
+  }
+
+  .brn-sale__panel:hover::before {
+    transform: scale(1.04);
+  }
+
+  .brn-sale__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.36);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .brn-sale__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 48px 36px;
+  }
+
+  .brn-sale__eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 14px;
+  }
+
+  .brn-sale__h3 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+    color: #ffffff;
+    margin: 0 0 28px;
+  }
+
+  .brn-sale__btn {
+    display: inline-block;
+    padding: 13px 28px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #111111;
+    background: #ffffff;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .brn-sale__btn:hover {
+    background: #FFEF39;
+    color: #111111;
+  }
+
+  @media (max-width: 768px) {
+    .brn-sale {
+      grid-template-columns: 1fr;
+    }
+
+    .brn-sale__panel {
+      min-height: 360px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sale Banner",
+  "tag": "div",
+  "class": "section-wrapper",
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "panel",
+      "name": "Panel",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Limited Pieces"
+        },
+        {
+          "type": "textarea",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Last Chance\nFinds"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sale Banner",
+      "blocks": [
+        {
+          "type": "panel",
+          "settings": {
+            "eyebrow": "Limited Pieces",
+            "heading": "Last Chance\nFinds",
+            "button_label": "Shop the Sale",
+            "button_url": "/collections/all"
+          }
+        },
+        {
+          "type": "panel",
+          "settings": {
+            "eyebrow": "Summer '26",
+            "heading": "New Season\nArrivals",
+            "button_label": "Shop Now",
+            "button_url": "/collections/new-arrivals"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+<div class="brn-polbar">
+  <div class="brn-polbar__inner">
+    {%- if section.settings.heading != blank -%}
+      <h3 class="brn-polbar__h3">{{ section.settings.heading }}</h3>
+    {%- endif -%}
+    {%- if section.settings.body != blank -%}
+      <p class="brn-polbar__body">{{ section.settings.body }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .brn-polbar {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding: 44px 24px;
+    text-align: center;
+  }
+
+  .brn-polbar__inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .brn-polbar__h3 {
+    font-family: var(--font-heading--family);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #111;
+    margin: 0 0 16px;
+  }
+
+  .brn-polbar__body {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(17,17,17,0.55);
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Policy Bar",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Return Policy"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "We want you to absolutely love what you picked! Eligible items may be returned for store credit within 10 days of delivery. Items must be unworn, unwashed, and with tags attached. Sale items are final sale. Store credit is issued as a digital gift card you can use anytime."
+    }
+  ],
+  "presets": [
+    { "name": "Policy Bar" }
+  ]
+}
+{% endschema %}

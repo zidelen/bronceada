@@ -1,0 +1,66 @@
+{%- assign primary_collection = product.collections | first -%}
+<nav class="brn-pb" aria-label="Breadcrumb">
+  <div class="brn-pb__inner">
+    <a href="{{ routes.root_url }}" class="brn-pb__crumb">Home</a>
+    <span class="brn-pb__sep" aria-hidden="true">&middot;</span>
+    {%- if primary_collection -%}
+      <a href="{{ primary_collection.url }}" class="brn-pb__crumb">{{ primary_collection.title }}</a>
+      <span class="brn-pb__sep" aria-hidden="true">&middot;</span>
+    {%- endif -%}
+    <span class="brn-pb__current" aria-current="page">{{ product.title }}</span>
+  </div>
+</nav>
+
+{% stylesheet %}
+  .brn-pb {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .brn-pb__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .brn-pb__crumb {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: rgba(17,17,17,0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .brn-pb__crumb:hover {
+    color: #111;
+  }
+
+  .brn-pb__sep {
+    font-size: 0.72rem;
+    color: rgba(17,17,17,0.35);
+  }
+
+  .brn-pb__current {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: rgba(17,17,17,0.55);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Breadcrumb",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [],
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "presets": [
+    { "name": "Product Breadcrumb" }
+  ]
+}
+{% endschema %}

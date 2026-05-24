@@ -1,0 +1,148 @@
+{%- assign has_image = collection.featured_image -%}
+
+<div class="brn-chero{% unless has_image %} brn-chero--light{% endunless %}"
+  {% if has_image %}style="--brn-chero-img: url({{ collection.featured_image | image_url: width: 1600 }})"{% endif %}
+>
+  {%- if has_image -%}<div class="brn-chero__overlay"></div>{%- endif -%}
+  <div class="brn-chero__inner brn-chero__inner--{{ section.settings.height }}">
+    <span class="brn-chero__eyebrow">{{ section.settings.eyebrow }}</span>
+    <h1 class="brn-chero__h1">{{ collection.title }}</h1>
+    {%- if section.settings.show_description and collection.description != blank -%}
+      <p class="brn-chero__desc">{{ collection.description | strip_html | truncate: 200 }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .brn-chero {
+    position: relative;
+    min-height: 360px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .brn-chero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--brn-chero-img);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .brn-chero--light {
+    background: #ffffff;
+    min-height: 200px;
+    align-items: center;
+  }
+
+  .brn-chero--light::before {
+    display: none;
+  }
+
+  .brn-chero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,6,0,0.62) 0%, rgba(20,12,0,0.18) 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .brn-chero__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 48px 28px;
+  }
+
+  .brn-chero__inner--compact { padding-block: 32px; }
+  .brn-chero__inner--tall   { padding-block: 80px; }
+
+  .brn-chero__eyebrow {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 12px;
+  }
+
+  .brn-chero--light .brn-chero__eyebrow {
+    color: #0A9CB5;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .brn-chero__h1 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    color: #ffffff;
+    margin: 0 0 12px;
+  }
+
+  .brn-chero--light .brn-chero__h1 {
+    color: #111111;
+  }
+
+  .brn-chero__desc {
+    font-size: 0.94rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .brn-chero--light .brn-chero__desc {
+    color: rgba(17,17,17,0.55);
+  }
+
+  @media (max-width: 768px) {
+    .brn-chero { min-height: 260px; }
+    .brn-chero__inner { padding: 36px 20px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Hero",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Our Collection"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Height",
+      "default": "standard",
+      "options": [
+        { "value": "compact", "label": "Compact" },
+        { "value": "standard", "label": "Standard" },
+        { "value": "tall", "label": "Tall" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    }
+  ],
+  "presets": [
+    { "name": "Collection Hero" }
+  ]
+}
+{% endschema %}

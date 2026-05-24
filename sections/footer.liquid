@@ -33,6 +33,16 @@
           <li><a href="{{ routes.root_url }}collections/the-floral-collection">Sets</a></li>
           <li><a href="{{ routes.root_url }}collections/statement-summer-collection">Tops &amp; Basics</a></li>
           <li><a href="{{ routes.root_url }}collections/jewelry-collection">Accessories</a></li>
+          <li><a href="{{ routes.root_url }}collections/all">Sale</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="bftr-col-h">Brand</h4>
+        <ul class="bftr-links">
+          <li><a href="{{ routes.root_url }}pages/about">Our Story</a></li>
+          <li><a href="{{ routes.root_url }}collections/all">Lookbook</a></li>
+          <li><a href="{{ routes.root_url }}collections/gift-cards">Gift Cards</a></li>
         </ul>
       </div>
 
@@ -60,8 +70,8 @@
     <div class="bftr-bottom">
       <p class="bftr-copy">&copy; {{ 'now' | date: '%Y' }} Bronceada &middot; Boutique &middot; Austin, TX</p>
       <div class="bftr-legal">
-        <a href="{{ routes.root_url }}/policies/privacy-policy">Privacy Policy</a>
-        <a href="{{ routes.root_url }}/policies/terms-of-service">Terms of Service</a>
+        <a href="{{ routes.root_url }}policies/privacy-policy">Privacy Policy</a>
+        <a href="{{ routes.root_url }}policies/terms-of-service">Terms of Service</a>
         <a href="{{ routes.root_url }}pages/data-sharing-opt-out">Accessibility</a>
       </div>
       <p class="bftr-credit">Designed by <a href="https://phenry.dev" target="_blank" rel="noopener">Phillip Henry</a></p>
@@ -97,7 +107,7 @@
 
   .bftr-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
     gap: 48px;
     margin-bottom: 48px;
   }
@@ -238,6 +248,12 @@
 
   .bftr-legal a:hover {
     color: rgba(255, 255, 255, 0.75);
+  }
+
+  @media (max-width: 1280px) {
+    .bftr-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
   }
 
   @media (max-width: 1100px) {

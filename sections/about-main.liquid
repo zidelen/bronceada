@@ -25,8 +25,8 @@
   <div class="brn-about-iwt__copy">
     <span class="brn-about-iwt__eyebrow">Who We Are</span>
     <h2 class="brn-about-iwt__h2">Born in Austin,<br>Built Different</h2>
-    <p class="brn-about-iwt__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p class="brn-about-iwt__body">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p class="brn-about-iwt__body">Bronceada started as a personal hunt for pieces that felt special — not mass-produced, not something you'd see five other women wearing at dinner. We opened at Lakeline Mall in Cedar Park because this community is our community.</p>
+    <p class="brn-about-iwt__body">Every piece on the rack was chosen by hand, because that's the only way we know how to do it.</p>
   </div>
 </section>
 
@@ -65,8 +65,8 @@
   <div class="brn-about-iwt__copy">
     <span class="brn-about-iwt__eyebrow">Our Promise</span>
     <h2 class="brn-about-iwt__h2">Curated With<br>Intention</h2>
-    <p class="brn-about-iwt__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-    <p class="brn-about-iwt__body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    <p class="brn-about-iwt__body">When you shop Bronceada, you're not browsing a warehouse algorithm. You're seeing exactly what we fell in love with at market — limited quantities, thoughtful curation, and nothing that doesn't belong.</p>
+    <p class="brn-about-iwt__body">If it made the rack, it earned it.</p>
   </div>
 </section>
 
@@ -77,6 +77,7 @@
       <span class="brn-about-visit__eyebrow">Find Us</span>
       <h2 class="brn-about-visit__h2">Come See Us<br>In Person</h2>
       <p class="brn-about-visit__text">The best way to experience Bronceada is in person. Stop by and see what's new — our inventory changes constantly.</p>
+      <a href="{{ routes.root_url }}pages/contact" class="brn-about-visit__btn">Send Us a Message</a>
       <div class="brn-about-visit__details">
         <div>
           <p class="brn-about-visit__label">Location</p>
@@ -103,7 +104,7 @@
     background-image: var(--about-hero-bg);
     background-size: cover;
     background-position: center 40%;
-    min-height: 480px;
+    min-height: 560px;
     display: flex;
     align-items: center;
   }
@@ -112,7 +113,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(8, 5, 0, 0.55);
+    background: linear-gradient(to top, rgba(10,6,0,0.62) 0%, rgba(20,12,0,0.18) 55%);
   }
 
   .brn-about-hero__inner {
@@ -129,7 +130,7 @@
     display: block;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
     color: #FFEF39;
     margin-bottom: 14px;
@@ -186,7 +187,7 @@
     display: block;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
     color: #0A9CB5;
     margin-bottom: 14px;
@@ -215,7 +216,7 @@
   /* ── Values ── */
   .brn-about-vals {
     background: #111;
-    padding: 72px 0;
+    padding: 64px 0;
   }
 
   .brn-about-vals__inner {
@@ -258,7 +259,7 @@
   /* ── Visit CTA ── */
   .brn-about-visit {
     background: #fff;
-    padding: 80px 0 96px;
+    padding: 64px 0 80px;
   }
 
   .brn-about-visit__inner {
@@ -271,7 +272,7 @@
     display: block;
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.17em;
     text-transform: uppercase;
     color: #0A9CB5;
     margin-bottom: 12px;
@@ -291,7 +292,26 @@
     font-size: 0.94rem;
     line-height: 1.72;
     color: rgba(17, 17, 17, 0.55);
-    margin: 0 0 40px;
+    margin: 0 0 24px;
+  }
+
+  .brn-about-visit__btn {
+    display: inline-block;
+    padding: 13px 28px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #111111;
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .brn-about-visit__btn:hover {
+    background: #FFEF39;
+    color: #111111;
   }
 
   .brn-about-visit__details {
@@ -340,7 +360,7 @@
   }
 
   /* ── Responsive ── */
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     .brn-about-iwt {
       grid-template-columns: 1fr;
     }
