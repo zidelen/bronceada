@@ -52,7 +52,7 @@
             "height": "fit",
             "details_position": "flex-start",
             "gap": 24,
-            "sticky_details_desktop": true,
+            "sticky_details_desktop": false,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-3",
             "background_media": "none",
@@ -268,6 +268,10 @@
               },
               "block_order": []
             },
+            "product_accordions": {
+              "type": "product-accordions",
+              "settings": {}
+            },
             "divider": {
               "type": "_divider",
               "name": "t:names.divider",
@@ -311,6 +315,7 @@
             "group",
             "variant_picker",
             "buy_buttons",
+            "product_accordions",
             "divider",
             "text"
           ]
