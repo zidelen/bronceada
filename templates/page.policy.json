@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "policy_page": {
+      "type": "policy-page",
+      "settings": {}
+    }
+  },
+  "order": ["policy_page"]
+}

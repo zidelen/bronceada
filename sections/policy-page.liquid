@@ -1,0 +1,117 @@
+{%- comment -%} Header {%- endcomment -%}
+<div class="brn-polpage-header">
+  <div class="brn-polpage-header__inner">
+    <span class="brn-polpage-header__eyebrow">Bronceada</span>
+    <h1 class="brn-polpage-header__h1">{{ page.title }}</h1>
+  </div>
+</div>
+
+{%- comment -%} Content {%- endcomment -%}
+<section class="brn-polpage">
+  <div class="brn-polpage__inner">
+    <div class="brn-polpage__body rte">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+
+  /* ── Header ── */
+  .brn-polpage-header {
+    background: #111;
+    padding: 56px 28px;
+    text-align: center;
+  }
+
+  .brn-polpage-header__inner {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .brn-polpage-header__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #FFEF39;
+    margin-bottom: 14px;
+  }
+
+  .brn-polpage-header__h1 {
+    font-family: var(--font-heading--family);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    color: #fff;
+    margin: 0;
+  }
+
+  /* ── Content ── */
+  .brn-polpage {
+    padding: 72px 0 96px;
+    background: #fff;
+  }
+
+  .brn-polpage__inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .brn-polpage__body {
+    font-size: 0.95rem;
+    line-height: 1.78;
+    color: rgba(17, 17, 17, 0.72);
+  }
+
+  .brn-polpage__body h2,
+  .brn-polpage__body h3 {
+    font-family: var(--font-heading--family);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #111;
+    margin: 2em 0 0.6em;
+  }
+
+  .brn-polpage__body h2 { font-size: 1.1rem; }
+  .brn-polpage__body h3 { font-size: 0.95rem; }
+
+  .brn-polpage__body p { margin: 0 0 1.1em; }
+
+  .brn-polpage__body a {
+    color: #0A9CB5;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .brn-polpage__body a:hover { color: #111; }
+
+  .brn-polpage__body ul,
+  .brn-polpage__body ol {
+    padding-left: 1.4em;
+    margin: 0 0 1.1em;
+  }
+
+  .brn-polpage__body li { margin-bottom: 0.4em; }
+
+  @media (max-width: 600px) {
+    .brn-polpage-header {
+      padding: 40px 20px;
+    }
+  }
+
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Policy Page",
+  "tag": "div",
+  "class": "section-wrapper",
+  "settings": []
+}
+{% endschema %}
