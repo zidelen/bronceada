@@ -77,8 +77,17 @@
       endif
     %}
 
+    {% assign catalog_collection_handles = 'new-arrivals,sets,tops,all,the-denim-collection,bottoms,dresses,shoes,plus-size-collection,jewelry-collection' | split: ',' %}
+
     {% capture children %}
       {% for link in block_settings.menu.links %}
+        {% liquid
+          assign is_catalog = false
+          assign link_title_lower = link.title | downcase
+          if link.handle == 'catalog' or link_title_lower == 'catalog'
+            assign is_catalog = true
+          endif
+        %}
         <li
           role="presentation"
           class="menu-list__list-item"
@@ -91,7 +100,7 @@
             href="{{ link.url }}"
             data-skip-node-update="true"
             class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
-            {%- if link.links != blank -%}
+            {%- if link.links != blank or is_catalog -%}
               aria-controls="submenu-{{ forloop.index }}"
               aria-haspopup="true"
               aria-expanded="false"
@@ -124,6 +133,55 @@
                       content_aspect_ratio: ratio,
                       image_border_radius: image_border_radius
                     %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- elsif is_catalog -%}
+            <div class="menu-list__submenu{{ color_scheme_classes }}" ref="submenu[]">
+              <div
+                id="submenu-{{ forloop.index }}"
+                class="menu-list__submenu-inner"
+                style="{% render 'submenu-font-styles', settings: block_settings %}"
+              >
+                <div class="mega-menu section section--full-width-margin section--{{ section.settings.section_width }}">
+                  <div class="mega-menu__grid brn-catalog-dropdown">
+                    {% assign col_count = 0 %}
+                    {% for handle in catalog_collection_handles %}
+                      {% assign col = collections[handle] %}
+                      {% if col != blank %}
+                        {% assign col_count = col_count | plus: 1 %}
+                      {% endif %}
+                    {% endfor %}
+                    {% assign half = col_count | divided_by: 2 | ceil %}
+                    {% assign current = 0 %}
+                    <div class="mega-menu__column">
+                      <ul class="mega-menu__list list-unstyled">
+                        {% for handle in catalog_collection_handles %}
+                          {% assign col = collections[handle] %}
+                          {% if col != blank %}
+                            {% assign current = current | plus: 1 %}
+                            {% if current <= half %}
+                              <li><a href="{{ col.url }}" class="mega-menu__link">{{ col.title }}</a></li>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="mega-menu__column">
+                      <ul class="mega-menu__list list-unstyled">
+                        {% assign current = 0 %}
+                        {% for handle in catalog_collection_handles %}
+                          {% assign col = collections[handle] %}
+                          {% if col != blank %}
+                            {% assign current = current | plus: 1 %}
+                            {% if current > half %}
+                              <li><a href="{{ col.url }}" class="mega-menu__link">{{ col.title }}</a></li>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
