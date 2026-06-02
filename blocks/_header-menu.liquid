@@ -78,6 +78,10 @@
     %}
 
     {% assign catalog_collection_handles = 'new-arrivals,sets,tops,all,the-denim-collection,bottoms,dresses,shoes,plus-size-collection,jewelry-collection' | split: ',' %}
+    {%- comment -%}
+      Handles map to: New Arrivals, Sets, Tops, All Products, The Denim Collection,
+      Bottoms, Dresses, Shoes, Plus Size Collection, Jewelry Collection
+    {%- endcomment -%}
 
     {% capture children %}
       {% for link in block_settings.menu.links %}
@@ -145,44 +149,18 @@
                 style="{% render 'submenu-font-styles', settings: block_settings %}"
               >
                 <div class="mega-menu section section--full-width-margin section--{{ section.settings.section_width }}">
-                  <div class="mega-menu__grid brn-catalog-dropdown">
-                    {% assign col_count = 0 %}
+                  <ul class="brn-catalog-row list-unstyled">
                     {% for handle in catalog_collection_handles %}
                       {% assign col = collections[handle] %}
                       {% if col != blank %}
-                        {% assign col_count = col_count | plus: 1 %}
+                        <li>
+                          <a href="{{ col.url }}" class="mega-menu__link brn-catalog-row__link">
+                            {{- col.title -}}
+                          </a>
+                        </li>
                       {% endif %}
                     {% endfor %}
-                    {% assign half = col_count | divided_by: 2 | ceil %}
-                    {% assign current = 0 %}
-                    <div class="mega-menu__column">
-                      <ul class="mega-menu__list list-unstyled">
-                        {% for handle in catalog_collection_handles %}
-                          {% assign col = collections[handle] %}
-                          {% if col != blank %}
-                            {% assign current = current | plus: 1 %}
-                            {% if current <= half %}
-                              <li><a href="{{ col.url }}" class="mega-menu__link">{{ col.title }}</a></li>
-                            {% endif %}
-                          {% endif %}
-                        {% endfor %}
-                      </ul>
-                    </div>
-                    <div class="mega-menu__column">
-                      <ul class="mega-menu__list list-unstyled">
-                        {% assign current = 0 %}
-                        {% for handle in catalog_collection_handles %}
-                          {% assign col = collections[handle] %}
-                          {% if col != blank %}
-                            {% assign current = current | plus: 1 %}
-                            {% if current > half %}
-                              <li><a href="{{ col.url }}" class="mega-menu__link">{{ col.title }}</a></li>
-                            {% endif %}
-                          {% endif %}
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -752,6 +730,36 @@
   .mega-menu__submenu {
     /* preserves the inherited grid layout when this submenu wrapper is used */
     display: contents;
+  }
+
+  .brn-catalog-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+    padding-block: var(--submenu-padding-block-start) var(--submenu-padding-block-end);
+    padding-inline: var(--page-margin);
+  }
+
+  .brn-catalog-row__link {
+    white-space: nowrap;
+    padding-inline: var(--padding-sm);
+    padding-block: var(--padding-2xs);
+  }
+
+  .brn-catalog-row__link::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--animation-speed) var(--animation-easing);
+  }
+
+  .brn-catalog-row__link:hover::after {
+    transform: scaleX(1);
   }
 {% endstylesheet %}
 
