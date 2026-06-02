@@ -2,73 +2,62 @@
   <div class="brn-cat__inner">
     <div class="brn-cat__header">
       <div>
-        <span class="brn-cat__eyebrow">Find Your Look</span>
-        <h2 class="brn-cat__heading">Shop by Category</h2>
+        <span class="brn-cat__eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 class="brn-cat__heading">{{ section.settings.heading }}</h2>
       </div>
     </div>
 
-    <div class="brn-cat__grid">
+    <div class="brn-cat__grid" style="--columns: {{ section.settings.columns }}">
+      {% for block in section.blocks %}
+        {% assign col = block.settings.collection %}
+        {% if block.settings.image != blank %}
+          {% assign tile_img = block.settings.image %}
+        {% elsif col != blank and col.featured_image != blank %}
+          {% assign tile_img = col.featured_image %}
+        {% else %}
+          {% assign tile_img = null %}
+        {% endif %}
 
-    <a href="{{ routes.root_url }}collections/dress-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Dresses.jpg' | asset_url }}"
-        alt="Dresses – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
-      <div class="brn-cat__overlay"></div>
-      <div class="brn-cat__body">
-        <span class="brn-cat__name">Dresses</span>
-        <span class="brn-cat__cta">Shop Now</span>
-      </div>
-    </a>
+        {% assign tile_label = block.settings.label %}
+        {% if tile_label == blank and col != blank %}
+          {% assign tile_label = col.title %}
+        {% elsif tile_label == blank %}
+          {% assign tile_label = 'Collection' %}
+        {% endif %}
 
-    <a href="{{ routes.root_url }}collections/the-floral-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}"
-        alt="Sets – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
-      <div class="brn-cat__overlay"></div>
-      <div class="brn-cat__body">
-        <span class="brn-cat__name">Sets</span>
-        <span class="brn-cat__cta">Shop Now</span>
-      </div>
-    </a>
+        {% if col != blank %}
+          {% assign tile_url = col.url %}
+        {% else %}
+          {% assign tile_url = '#' %}
+        {% endif %}
 
-    <a href="{{ routes.root_url }}collections/statement-summer-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Tops.jpg' | asset_url }}"
-        alt="Tops & Basics – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
-      <div class="brn-cat__overlay"></div>
-      <div class="brn-cat__body">
-        <span class="brn-cat__name">Tops &amp; Basics</span>
-        <span class="brn-cat__cta">Shop Now</span>
-      </div>
-    </a>
-
-    <a href="{{ routes.root_url }}collections/jewelry-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Jewlery.jpg' | asset_url }}"
-        alt="Accessories – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
-      <div class="brn-cat__overlay"></div>
-      <div class="brn-cat__body">
-        <span class="brn-cat__name">Accessories</span>
-        <span class="brn-cat__cta">Shop Now</span>
-      </div>
-    </a>
-
+        <a
+          href="{{ tile_url }}"
+          class="brn-cat__tile"
+          {{ block.shopify_attributes }}
+        >
+          {% if tile_img != null %}
+            {{
+              tile_img
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 600, 800',
+                sizes: '(max-width: 768px) 50vw, 25vw',
+                alt: tile_label
+            }}
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'brn-cat__placeholder' }}
+          {% endif %}
+          <div class="brn-cat__overlay"></div>
+          <div class="brn-cat__body">
+            <span class="brn-cat__name">{{ tile_label }}</span>
+            <span class="brn-cat__cta">{{ section.settings.cta_text }}</span>
+          </div>
+        </a>
+      {% else %}
+        <p class="brn-cat__empty">Add collection tiles in the theme editor.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -113,7 +102,7 @@
 
   .brn-cat__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--columns, 4), 1fr);
     gap: 14px;
   }
 
@@ -136,6 +125,14 @@
 
   .brn-cat__tile:hover img {
     transform: scale(1.06);
+  }
+
+  .brn-cat__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #f0f0f0;
   }
 
   .brn-cat__overlay {
@@ -175,6 +172,13 @@
     padding-bottom: 1px;
   }
 
+  .brn-cat__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #999;
+    padding: 48px 0;
+  }
+
   @media (max-width: 768px) {
     .brn-cat {
       padding: 48px 0;
@@ -191,10 +195,70 @@
   "name": "Category Grid",
   "tag": "div",
   "class": "section-wrapper",
-  "settings": [],
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Find Your Look"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Tile CTA text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_tile",
+      "name": "Collection tile",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image",
+          "info": "Overrides the collection's featured image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Custom label",
+          "info": "Overrides the collection title shown on the tile"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Category Grid"
+      "name": "Category Grid",
+      "blocks": [
+        { "type": "collection_tile" },
+        { "type": "collection_tile" },
+        { "type": "collection_tile" },
+        { "type": "collection_tile" }
+      ]
     }
   ]
 }
