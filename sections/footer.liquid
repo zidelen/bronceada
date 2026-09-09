@@ -5,71 +5,11 @@
   else
     assign bg_url = 'lifestyle-beach-banner.jpg' | asset_url
   endif
-
-  assign shop_url_1 = section.settings.shop_link_1_url
-  if shop_url_1 == blank
-    assign shop_url_1 = routes.root_url | append: 'collections/new-arrivals'
-  endif
-
-  assign shop_url_2 = section.settings.shop_link_2_url
-  if shop_url_2 == blank
-    assign shop_url_2 = routes.root_url | append: 'collections/dress-collection'
-  endif
-
-  assign shop_url_3 = section.settings.shop_link_3_url
-  if shop_url_3 == blank
-    assign shop_url_3 = routes.root_url | append: 'collections/the-floral-collection'
-  endif
-
-  assign shop_url_4 = section.settings.shop_link_4_url
-  if shop_url_4 == blank
-    assign shop_url_4 = routes.root_url | append: 'collections/statement-summer-collection'
-  endif
-
-  assign shop_url_5 = section.settings.shop_link_5_url
-  if shop_url_5 == blank
-    assign shop_url_5 = routes.root_url | append: 'collections/jewelry-collection'
-  endif
-
-  assign help_url_1 = section.settings.help_link_1_url
-  if help_url_1 == blank
-    assign help_url_1 = routes.root_url | append: 'pages/about'
-  endif
-
-  assign help_url_2 = section.settings.help_link_2_url
-  if help_url_2 == blank
-    assign help_url_2 = routes.root_url | append: 'pages/contact'
-  endif
-
-  assign help_url_3 = section.settings.help_link_3_url
-  if help_url_3 == blank
-    assign help_url_3 = routes.root_url | append: 'pages/refunds'
-  endif
-
-  assign help_url_4 = section.settings.help_link_4_url
-  if help_url_4 == blank
-    assign help_url_4 = routes.root_url | append: 'pages/shipping'
-  endif
-
-  assign legal_url_1 = section.settings.legal_link_1_url
-  if legal_url_1 == blank
-    assign legal_url_1 = routes.root_url | append: 'policies/privacy-policy'
-  endif
-
-  assign legal_url_2 = section.settings.legal_link_2_url
-  if legal_url_2 == blank
-    assign legal_url_2 = routes.root_url | append: 'policies/terms-of-service'
-  endif
-
-  assign legal_url_3 = section.settings.legal_link_3_url
-  if legal_url_3 == blank
-    assign legal_url_3 = routes.root_url | append: 'pages/data-sharing-opt-out'
-  endif
 %}
 
 <div
   class="bftr-footer"
-  style="--bftr-bg: url({{ bg_url }}); --color-brand-yellow: {{ section.settings.color_brand_yellow }};"
+  style="--bftr-bg: url({{ bg_url }})"
 >
   <div class="bftr">
     <div class="bftr-grid">
@@ -82,60 +22,56 @@
             <img src="{{ 'BronceadaLogo.png' | asset_url }}" alt="Bronceada" width="160" height="38" style="height:38px;width:auto;filter:brightness(0) invert(1);">
           {% endif %}
         </div>
-        <p class="bftr-desc">{{ section.settings.description }}</p>
+        <p class="bftr-desc">One-of-a-kind pieces, hand-picked and brought straight to Austin. Find us at Lakeline Mall in Cedar Park, TX.</p>
         <div class="bftr-social">
-          {% if section.settings.social_instagram_link != blank %}
-            <a href="{{ section.settings.social_instagram_link }}" aria-label="Instagram" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-            </a>
-          {% endif %}
-          {% if section.settings.social_tiktok_link != blank %}
-            <a href="{{ section.settings.social_tiktok_link }}" aria-label="TikTok" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.84 4.84 0 0 1-1.01-.09z"/></svg>
-            </a>
-          {% endif %}
+          <a href="https://www.instagram.com/shopbronceada" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@shopbronceada" aria-label="TikTok" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.84 4.84 0 0 1-1.01-.09z"/></svg>
+          </a>
         </div>
       </div>
 
       <div>
-        <h4 class="bftr-col-h">{{ section.settings.shop_heading }}</h4>
+        <h4 class="bftr-col-h">Shop</h4>
         <ul class="bftr-links">
-          {% if section.settings.shop_link_1_label != blank %}<li><a href="{{ shop_url_1 }}">{{ section.settings.shop_link_1_label }}</a></li>{% endif %}
-          {% if section.settings.shop_link_2_label != blank %}<li><a href="{{ shop_url_2 }}">{{ section.settings.shop_link_2_label }}</a></li>{% endif %}
-          {% if section.settings.shop_link_3_label != blank %}<li><a href="{{ shop_url_3 }}">{{ section.settings.shop_link_3_label }}</a></li>{% endif %}
-          {% if section.settings.shop_link_4_label != blank %}<li><a href="{{ shop_url_4 }}">{{ section.settings.shop_link_4_label }}</a></li>{% endif %}
-          {% if section.settings.shop_link_5_label != blank %}<li><a href="{{ shop_url_5 }}">{{ section.settings.shop_link_5_label }}</a></li>{% endif %}
+          <li><a href="{{ routes.root_url }}collections/new-arrivals">New Arrivals</a></li>
+          <li><a href="{{ routes.root_url }}collections/dress-collection">Dresses</a></li>
+          <li><a href="{{ routes.root_url }}collections/the-floral-collection">Sets</a></li>
+          <li><a href="{{ routes.root_url }}collections/statement-summer-collection">Tops &amp; Basics</a></li>
+          <li><a href="{{ routes.root_url }}collections/jewelry-collection">Accessories</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="bftr-col-h">{{ section.settings.help_heading }}</h4>
+        <h4 class="bftr-col-h">Help</h4>
         <ul class="bftr-links">
-          {% if section.settings.help_link_1_label != blank %}<li><a href="{{ help_url_1 }}">{{ section.settings.help_link_1_label }}</a></li>{% endif %}
-          {% if section.settings.help_link_2_label != blank %}<li><a href="{{ help_url_2 }}">{{ section.settings.help_link_2_label }}</a></li>{% endif %}
-          {% if section.settings.help_link_3_label != blank %}<li><a href="{{ help_url_3 }}">{{ section.settings.help_link_3_label }}</a></li>{% endif %}
-          {% if section.settings.help_link_4_label != blank %}<li><a href="{{ help_url_4 }}">{{ section.settings.help_link_4_label }}</a></li>{% endif %}
+          <li><a href="{{ routes.root_url }}pages/about">About Us</a></li>
+          <li><a href="{{ routes.root_url }}pages/contact">Contact Us</a></li>
+          <li><a href="{{ routes.root_url }}pages/refunds">Returns &amp; Exchanges</a></li>
+          <li><a href="{{ routes.root_url }}pages/shipping">Shipping Info</a></li>
         </ul>
       </div>
 
       <div>
-        <h4 class="bftr-col-h">{{ section.settings.visit_heading }}</h4>
-        <p class="bftr-address">{{ section.settings.address | newline_to_br }}</p>
+        <h4 class="bftr-col-h">Visit Us</h4>
+        <p class="bftr-address">UL (Upper Level)<br>Lakeline Mall<br>11200 Lakeline Mall Dr<br>Cedar Park, TX 78613</p>
         <ul class="bftr-links bftr-links--plain">
-          <li>{{ section.settings.hours_line_1 }}</li>
-          <li>{{ section.settings.hours_line_2 }}</li>
-          <li>{{ section.settings.hours_line_3 }}</li>
+          <li>Sun &nbsp;12:00pm – 6:00pm</li>
+          <li>Mon – Thu &nbsp;11:00am – 8:00pm</li>
+          <li>Fri – Sat &nbsp;10:00am – 9:00pm</li>
         </ul>
       </div>
 
     </div>
 
     <div class="bftr-bottom">
-      <p class="bftr-copy">&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_tagline }}</p>
+      <p class="bftr-copy">&copy; {{ 'now' | date: '%Y' }} Bronceada &middot; Boutique &middot; Austin, TX</p>
       <div class="bftr-legal">
-        {% if section.settings.legal_link_1_label != blank %}<a href="{{ legal_url_1 }}">{{ section.settings.legal_link_1_label }}</a>{% endif %}
-        {% if section.settings.legal_link_2_label != blank %}<a href="{{ legal_url_2 }}">{{ section.settings.legal_link_2_label }}</a>{% endif %}
-        {% if section.settings.legal_link_3_label != blank %}<a href="{{ legal_url_3 }}">{{ section.settings.legal_link_3_label }}</a>{% endif %}
+        <a href="{{ routes.root_url }}policies/privacy-policy">Privacy Policy</a>
+        <a href="{{ routes.root_url }}policies/terms-of-service">Terms of Service</a>
+        <a href="{{ routes.root_url }}pages/data-sharing-opt-out">Accessibility</a>
       </div>
       <p class="bftr-credit">Designed by <a href="https://phenry.dev" target="_blank" rel="noopener">Phillip Henry</a></p>
     </div>
@@ -181,7 +117,7 @@
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-brand-yellow, #FFEF39);
+    color: #FFEF39;
     margin-bottom: 14px;
   }
 
@@ -212,8 +148,8 @@
   }
 
   .bftr-social a:hover {
-    border-color: var(--color-brand-yellow, #FFEF39);
-    color: var(--color-brand-yellow, #FFEF39);
+    border-color: #FFEF39;
+    color: #FFEF39;
     background: rgba(255, 239, 57, 0.08);
   }
 
@@ -352,258 +288,6 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background image"
-    },
-    {
-      "type": "header",
-      "content": "Description"
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "One-of-a-kind pieces, hand-picked and brought straight to Austin. Find us at Lakeline Mall in Cedar Park, TX."
-    },
-    {
-      "type": "header",
-      "content": "Social links"
-    },
-    {
-      "type": "url",
-      "id": "social_instagram_link",
-      "label": "Instagram URL",
-      "default": "https://www.instagram.com/shopbronceada"
-    },
-    {
-      "type": "url",
-      "id": "social_tiktok_link",
-      "label": "TikTok URL",
-      "default": "https://www.tiktok.com/@shopbronceada"
-    },
-    {
-      "type": "header",
-      "content": "Column headings"
-    },
-    {
-      "type": "text",
-      "id": "shop_heading",
-      "label": "\"Shop\" column heading",
-      "default": "Shop"
-    },
-    {
-      "type": "text",
-      "id": "help_heading",
-      "label": "\"Help\" column heading",
-      "default": "Help"
-    },
-    {
-      "type": "text",
-      "id": "visit_heading",
-      "label": "\"Visit Us\" column heading",
-      "default": "Visit Us"
-    },
-    {
-      "type": "header",
-      "content": "Shop links"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_1_label",
-      "label": "Link 1 label",
-      "default": "New Arrivals"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_1_url",
-      "label": "Link 1 URL",
-      "default": "/collections/new-arrivals"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_2_label",
-      "label": "Link 2 label",
-      "default": "Dresses"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_2_url",
-      "label": "Link 2 URL",
-      "default": "/collections/dress-collection"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_3_label",
-      "label": "Link 3 label",
-      "default": "Sets"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_3_url",
-      "label": "Link 3 URL",
-      "default": "/collections/the-floral-collection"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_4_label",
-      "label": "Link 4 label",
-      "default": "Tops &amp; Basics"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_4_url",
-      "label": "Link 4 URL",
-      "default": "/collections/statement-summer-collection"
-    },
-    {
-      "type": "text",
-      "id": "shop_link_5_label",
-      "label": "Link 5 label",
-      "default": "Accessories"
-    },
-    {
-      "type": "url",
-      "id": "shop_link_5_url",
-      "label": "Link 5 URL",
-      "default": "/collections/jewelry-collection"
-    },
-    {
-      "type": "header",
-      "content": "Help links"
-    },
-    {
-      "type": "text",
-      "id": "help_link_1_label",
-      "label": "Link 1 label",
-      "default": "About Us"
-    },
-    {
-      "type": "url",
-      "id": "help_link_1_url",
-      "label": "Link 1 URL",
-      "default": "/pages/about"
-    },
-    {
-      "type": "text",
-      "id": "help_link_2_label",
-      "label": "Link 2 label",
-      "default": "Contact Us"
-    },
-    {
-      "type": "url",
-      "id": "help_link_2_url",
-      "label": "Link 2 URL",
-      "default": "/pages/contact"
-    },
-    {
-      "type": "text",
-      "id": "help_link_3_label",
-      "label": "Link 3 label",
-      "default": "Returns &amp; Exchanges"
-    },
-    {
-      "type": "url",
-      "id": "help_link_3_url",
-      "label": "Link 3 URL",
-      "default": "/pages/refunds"
-    },
-    {
-      "type": "text",
-      "id": "help_link_4_label",
-      "label": "Link 4 label",
-      "default": "Shipping Info"
-    },
-    {
-      "type": "url",
-      "id": "help_link_4_url",
-      "label": "Link 4 URL",
-      "default": "/pages/shipping"
-    },
-    {
-      "type": "header",
-      "content": "Legal links"
-    },
-    {
-      "type": "text",
-      "id": "legal_link_1_label",
-      "label": "Link 1 label",
-      "default": "Privacy Policy"
-    },
-    {
-      "type": "url",
-      "id": "legal_link_1_url",
-      "label": "Link 1 URL",
-      "default": "/policies/privacy-policy"
-    },
-    {
-      "type": "text",
-      "id": "legal_link_2_label",
-      "label": "Link 2 label",
-      "default": "Terms of Service"
-    },
-    {
-      "type": "url",
-      "id": "legal_link_2_url",
-      "label": "Link 2 URL",
-      "default": "/policies/terms-of-service"
-    },
-    {
-      "type": "text",
-      "id": "legal_link_3_label",
-      "label": "Link 3 label",
-      "default": "Accessibility"
-    },
-    {
-      "type": "url",
-      "id": "legal_link_3_url",
-      "label": "Link 3 URL",
-      "default": "/pages/data-sharing-opt-out"
-    },
-    {
-      "type": "header",
-      "content": "Visit"
-    },
-    {
-      "type": "textarea",
-      "id": "address",
-      "label": "Address",
-      "default": "UL (Upper Level)\nLakeline Mall\n11200 Lakeline Mall Dr\nCedar Park, TX 78613"
-    },
-    {
-      "type": "text",
-      "id": "hours_line_1",
-      "label": "Hours line 1",
-      "default": "Sun &nbsp;12:00pm – 6:00pm"
-    },
-    {
-      "type": "text",
-      "id": "hours_line_2",
-      "label": "Hours line 2",
-      "default": "Mon – Thu &nbsp;11:00am – 8:00pm"
-    },
-    {
-      "type": "text",
-      "id": "hours_line_3",
-      "label": "Hours line 3",
-      "default": "Fri – Sat &nbsp;10:00am – 9:00pm"
-    },
-    {
-      "type": "header",
-      "content": "Copyright"
-    },
-    {
-      "type": "text",
-      "id": "copyright_tagline",
-      "label": "Copyright tagline (year is automatic)",
-      "default": "Bronceada &middot; Boutique &middot; Austin, TX"
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "color_brand_yellow",
-      "label": "Brand yellow (logo & accents)",
-      "default": "#FFEF39"
     }
   ]
 }

@@ -13,17 +13,35 @@
       "type": "hero",
       "name": "Hero",
       "settings": {
+        "hero_image_left": "shopify://shop_images/IMG_0547.heic",
         "eyebrow": "Boutique · NEW STYLES EVERY WEEK",
         "heading": "Your next favorite outfit is here.",
         "subheading": "Hand-picked styles in limited quantities. Once they're gone, they're gone.",
         "button_label": "Shop New Arrivals",
-        "button_url": "/collections/new-arrivals"
+        "button_url": "/collections/new-arrivals",
+        "color_brand_yellow": "#ffef39"
       }
     },
     "category_grid_bronceada": {
       "type": "category-grid",
       "name": "Category Grid",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Find Your Look",
+        "heading": "Shop by Category",
+        "tile_1_name": "Dresses",
+        "tile_1_cta": "Shop Now",
+        "tile_1_collection": "",
+        "tile_2_name": "Sets",
+        "tile_2_cta": "Shop Now",
+        "tile_2_collection": "",
+        "tile_3_name": "Tops & Basics",
+        "tile_3_cta": "Shop Now",
+        "tile_3_collection": "",
+        "tile_4_name": "Accessories",
+        "tile_4_cta": "Shop Now",
+        "tile_4_collection": "",
+        "color_brand_ink": "#111111"
+      }
     },
     "our_story_iwt_bronceada": {
       "type": "our-story-iwt",
@@ -33,7 +51,10 @@
         "heading": "Born in Austin,\nBuilt Different",
         "body": "Bronceada is an Austin boutique specializing in one-of-a-kind pieces. Every item is hand-picked — nothing mass-produced, nothing you'll see everywhere else. Find us at Lakeline Mall in Cedar Park.",
         "button_label": "Learn Our Story",
-        "button_url": "/pages/about"
+        "button_url": "/pages/about",
+        "color_brand_cream": "#fffcee",
+        "color_brand_teal": "#0a9cb5",
+        "color_brand_yellow": "#ffef39"
       }
     },
     "new_arrivals_bronceada": {
@@ -43,20 +64,28 @@
         "collection": "new-arrivals",
         "max_products": 4,
         "eyebrow": "Just Landed",
-        "heading": "New Arrivals"
+        "heading": "New Arrivals",
+        "view_all_label": "View All",
+        "color_brand_teal": "#0a9cb5",
+        "color_brand_ink": "#111111",
+        "color_brand_yellow": "#ffef39"
       }
     },
     "community_iwt_bronceada": {
       "type": "community-iwt",
       "name": "Community",
       "settings": {
+        "image": "shopify://shop_images/IMG_8963_2.heic",
         "eyebrow": "Join the Bronceada Community",
         "heading": "More than an online boutique.",
         "body": "Visit Bronceada at Lakeline Mall in Cedar Park, TX, and shop our newest arrivals in person. Follow us on Instagram and TikTok for new drops, styling inspo, behind-the-scenes moments, and what’s happening in store.",
         "primary_label": "Follow on Instagram",
         "primary_url": "https://www.instagram.com/shopbronceada",
         "secondary_label": "Follow on TikTok",
-        "secondary_url": "https://www.tiktok.com/@shopbronceada"
+        "secondary_url": "https://www.tiktok.com/@shopbronceada",
+        "color_brand_cream": "#fffcee",
+        "color_brand_teal": "#0a9cb5",
+        "color_brand_yellow": "#ffef39"
       }
     },
     "product_list_8kR3Hb": {
