@@ -692,10 +692,10 @@
 
 {% assign form_id = 'BronceadaEmailBar' %}
 
-<section class="beb-newsletter">
+<section class="beb-newsletter" style="--color-brand-ink: {{ section.settings.color_brand_ink }}; --color-brand-yellow: {{ section.settings.color_brand_yellow }};">
   <div class="beb-inner">
-    <h2 class="beb-h2">Get on the List</h2>
-    <p class="beb-sub">Be the first to know about new arrivals, exclusive sales, and styling inspo — straight to your inbox.</p>
+    <h2 class="beb-h2">{{ section.settings.heading }}</h2>
+    <p class="beb-sub">{{ section.settings.subheading }}</p>
 
     {%- form 'customer', id: form_id -%}
       <input type="hidden" name="contact[id]" value="{{ form_id }}">
@@ -704,13 +704,13 @@
           type="email"
           name="contact[email]"
           class="beb-input"
-          placeholder="Your email address"
+          placeholder="{{ section.settings.input_placeholder }}"
           aria-label="Email address"
           autocomplete="email"
           required
           {% if form.errors %}autofocus aria-invalid="true"{% endif %}
         >
-        <button type="submit" class="beb-btn">Subscribe</button>
+        <button type="submit" class="beb-btn">{{ section.settings.button_label }}</button>
       </div>
 
       {%- if form.errors -%}
@@ -718,17 +718,17 @@
       {%- endif -%}
 
       {%- if form.posted_successfully? -%}
-        <p class="beb-msg beb-msg--success">Thanks for subscribing!</p>
+        <p class="beb-msg beb-msg--success">{{ section.settings.success_message }}</p>
       {%- endif -%}
     {%- endform -%}
 
-    <p class="beb-disc">By subscribing you agree to receive marketing emails. Unsubscribe anytime.</p>
+    <p class="beb-disc">{{ section.settings.disclaimer }}</p>
   </div>
 </section>
 
 {% stylesheet %}
   .beb-newsletter {
-    background: #111;
+    background: var(--color-brand-ink, #111111);
     color: #fff;
     padding: 72px 24px;
     text-align: center;
@@ -788,7 +788,7 @@
 
   .beb-btn {
     padding: 14px 26px;
-    background: #FFEF39;
+    background: var(--color-brand-yellow, #FFEF39);
     color: #000;
     font-family: var(--font-body--family);
     font-size: 0.78rem;
@@ -816,7 +816,7 @@
   }
 
   .beb-msg--success {
-    color: #FFEF39;
+    color: var(--color-brand-yellow, #FFEF39);
   }
 
   .beb-disc {
@@ -845,6 +845,63 @@
   "enabled_on": {
     "groups": ["footer"]
   },
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get on the List"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Be the first to know about new arrivals, exclusive sales, and styling inspo — straight to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email input placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "textarea",
+      "id": "disclaimer",
+      "label": "Disclaimer text",
+      "default": "By subscribing you agree to receive marketing emails. Unsubscribe anytime."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_ink",
+      "label": "Background color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_yellow",
+      "label": "Brand yellow (button & accents)",
+      "default": "#FFEF39"
+    }
+  ]
 }
 {% endschema %}

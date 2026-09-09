@@ -1,4 +1,4 @@
-<div class="brn-iwt">
+<div class="brn-iwt" style="--color-brand-cream: {{ section.settings.color_brand_cream }}; --color-brand-teal: {{ section.settings.color_brand_teal }}; --color-brand-yellow: {{ section.settings.color_brand_yellow }};">
 
   <div class="brn-iwt__img">
     {% if section.settings.image %}
@@ -57,7 +57,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 64px 80px;
-    background: #FFFCEE;
+    background: var(--color-brand-cream, #FFFCEE);
   }
 
   .brn-iwt__eyebrow {
@@ -66,7 +66,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #0A9CB5;
+    color: var(--color-brand-teal, #0A9CB5);
     margin-bottom: 14px;
   }
 
@@ -112,7 +112,7 @@
   }
 
   .brn-iwt__btn--blk:hover {
-    background: #FFEF39;
+    background: var(--color-brand-yellow, #FFEF39);
     color: #000;
   }
 
@@ -123,9 +123,9 @@
   }
 
   .brn-iwt__btn--out:hover {
-    background: #FFEF39;
+    background: var(--color-brand-yellow, #FFEF39);
     color: #000;
-    border-color: #FFEF39;
+    border-color: var(--color-brand-yellow, #FFEF39);
   }
 
   @media (max-width: 768px) {
@@ -195,6 +195,28 @@
       "type": "url",
       "id": "button_url",
       "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_cream",
+      "label": "Brand cream (section background)",
+      "default": "#FFFCEE"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_teal",
+      "label": "Brand teal (eyebrow)",
+      "default": "#0A9CB5"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_yellow",
+      "label": "Brand yellow (button hover)",
+      "default": "#FFEF39"
     }
   ],
   "presets": [

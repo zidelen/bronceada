@@ -1,12 +1,34 @@
-<section class="brn-cat">
+{% liquid
+  assign tile_1_url = section.settings.tile_1_collection.url
+  if tile_1_url == blank
+    assign tile_1_url = routes.root_url | append: 'collections/dress-collection'
+  endif
+
+  assign tile_2_url = section.settings.tile_2_collection.url
+  if tile_2_url == blank
+    assign tile_2_url = routes.root_url | append: 'collections/the-floral-collection'
+  endif
+
+  assign tile_3_url = section.settings.tile_3_collection.url
+  if tile_3_url == blank
+    assign tile_3_url = routes.root_url | append: 'collections/statement-summer-collection'
+  endif
+
+  assign tile_4_url = section.settings.tile_4_collection.url
+  if tile_4_url == blank
+    assign tile_4_url = routes.root_url | append: 'collections/jewelry-collection'
+  endif
+%}
+
+<section class="brn-cat" style="--color-brand-ink: {{ section.settings.color_brand_ink }};">
   <div class="brn-cat__header">
-    <span class="brn-cat__eyebrow">Find Your Look</span>
-    <h2 class="brn-cat__heading">Shop by Category</h2>
+    <span class="brn-cat__eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="brn-cat__heading">{{ section.settings.heading }}</h2>
   </div>
 
   <div class="brn-cat__grid">
 
-    <a href="{{ routes.root_url }}collections/dress-collection" class="brn-cat__tile">
+    <a href="{{ tile_1_url }}" class="brn-cat__tile">
       {% if section.settings.tile_image_1 %}
         <img
           src="{{ section.settings.tile_image_1 | image_url: width: 800 }}"
@@ -26,12 +48,12 @@
       {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
-        <span class="brn-cat__name">Dresses</span>
-        <span class="brn-cat__cta">Shop Now</span>
+        <span class="brn-cat__name">{{ section.settings.tile_1_name }}</span>
+        <span class="brn-cat__cta">{{ section.settings.tile_1_cta }}</span>
       </div>
     </a>
 
-    <a href="{{ routes.root_url }}collections/the-floral-collection" class="brn-cat__tile">
+    <a href="{{ tile_2_url }}" class="brn-cat__tile">
       {% if section.settings.tile_image_2 %}
         <img
           src="{{ section.settings.tile_image_2 | image_url: width: 800 }}"
@@ -51,12 +73,12 @@
       {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
-        <span class="brn-cat__name">Sets</span>
-        <span class="brn-cat__cta">Shop Now</span>
+        <span class="brn-cat__name">{{ section.settings.tile_2_name }}</span>
+        <span class="brn-cat__cta">{{ section.settings.tile_2_cta }}</span>
       </div>
     </a>
 
-    <a href="{{ routes.root_url }}collections/statement-summer-collection" class="brn-cat__tile">
+    <a href="{{ tile_3_url }}" class="brn-cat__tile">
       {% if section.settings.tile_image_3 %}
         <img
           src="{{ section.settings.tile_image_3 | image_url: width: 800 }}"
@@ -76,12 +98,12 @@
       {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
-        <span class="brn-cat__name">Tops &amp; Basics</span>
-        <span class="brn-cat__cta">Shop Now</span>
+        <span class="brn-cat__name">{{ section.settings.tile_3_name }}</span>
+        <span class="brn-cat__cta">{{ section.settings.tile_3_cta }}</span>
       </div>
     </a>
 
-    <a href="{{ routes.root_url }}collections/jewelry-collection" class="brn-cat__tile">
+    <a href="{{ tile_4_url }}" class="brn-cat__tile">
       {% if section.settings.tile_image_4 %}
         <img
           src="{{ section.settings.tile_image_4 | image_url: width: 800 }}"
@@ -101,8 +123,8 @@
       {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
-        <span class="brn-cat__name">Accessories</span>
-        <span class="brn-cat__cta">Shop Now</span>
+        <span class="brn-cat__name">{{ section.settings.tile_4_name }}</span>
+        <span class="brn-cat__cta">{{ section.settings.tile_4_cta }}</span>
       </div>
     </a>
 
@@ -137,7 +159,7 @@
     font-weight: 700;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: #111;
+    color: var(--color-brand-ink, #111111);
     margin: 0;
   }
 
@@ -260,6 +282,116 @@
       "type": "image_picker",
       "id": "tile_image_4",
       "label": "Accessories image"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Find Your Look"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "header",
+      "content": "Tile 1"
+    },
+    {
+      "type": "text",
+      "id": "tile_1_name",
+      "label": "Name",
+      "default": "Dresses"
+    },
+    {
+      "type": "text",
+      "id": "tile_1_cta",
+      "label": "Call-to-action text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "collection",
+      "id": "tile_1_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Tile 2"
+    },
+    {
+      "type": "text",
+      "id": "tile_2_name",
+      "label": "Name",
+      "default": "Sets"
+    },
+    {
+      "type": "text",
+      "id": "tile_2_cta",
+      "label": "Call-to-action text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "collection",
+      "id": "tile_2_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Tile 3"
+    },
+    {
+      "type": "text",
+      "id": "tile_3_name",
+      "label": "Name",
+      "default": "Tops &amp; Basics"
+    },
+    {
+      "type": "text",
+      "id": "tile_3_cta",
+      "label": "Call-to-action text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "collection",
+      "id": "tile_3_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Tile 4"
+    },
+    {
+      "type": "text",
+      "id": "tile_4_name",
+      "label": "Name",
+      "default": "Accessories"
+    },
+    {
+      "type": "text",
+      "id": "tile_4_cta",
+      "label": "Call-to-action text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "collection",
+      "id": "tile_4_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_ink",
+      "label": "Heading color",
+      "default": "#111111"
     }
   ],
   "presets": [

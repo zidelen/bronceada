@@ -1,0 +1,96 @@
+MAKE BRAND CONTENT EDITABLE IN THE THEME EDITOR — ROUND 2
+=========================================================================
+
+CONTEXT
+-------
+Round 1 (shipped separately) added image_picker settings to 6 sections so
+hardcoded photos could be swapped from the theme editor: hero, category-grid,
+about-main, our-story-iwt, community-iwt, footer.
+
+The client is actively editing the site (templates/index.json shows they've
+already rewritten several section defaults), so this round expands editability
+to everything else tied to their BRAND and BUSINESS — copy, store info, links,
+and brand colors — while leaving the THEME itself (layout, CSS, structure,
+fonts) locked to code. Policy pages, the 404 page, favicon plumbing, and
+seo-schema.liquid were explicitly kept out of scope.
+
+Per-section settings, no shared/global settings: every value (including
+colors) lives on the section that renders it. Changing the brand yellow
+everywhere means editing it in each of the ~8 sections that use it — a
+deliberate tradeoff in exchange for full per-section control.
+
+FILES CHANGED
+-------------
+- sections/footer.liquid       — description, social links, column headings,
+                                  5 Shop + 4 Help + 3 legal links (label+url
+                                  pairs, blank label hides the link), address,
+                                  3 hours lines, copyright tagline, brand
+                                  yellow color.
+- sections/email-bar.liquid    — heading, subheading, input placeholder,
+                                  button label, success message, disclaimer,
+                                  ink + yellow colors. (Only the live section
+                                  from ~line 691 was touched; the large dead
+                                  {% comment %} block above it was left alone.)
+- sections/about-main.liquid   — full text settings for every copy block
+                                  (hero, 2 story blocks, 3 values cards, visit
+                                  CTA), a section-local address + 3 hours
+                                  day/time pairs (not shared with footer), and
+                                  yellow/teal/cream/ink colors.
+- sections/contact-main.liquid — full text settings (intro, email, address,
+                                  hours, social links, form heading), all
+                                  section-local, plus teal/ink/cream colors.
+- sections/category-grid.liquid — eyebrow/heading, per-tile name + CTA text
+                                  (4 independent CTA settings), a collection
+                                  picker per tile (falls back to today's fixed
+                                  collection when unset), and an ink color.
+- sections/new-arrivals.liquid — "View All" link label, teal/ink/yellow
+                                  colors. Collection/product-count/eyebrow/
+                                  heading were already settings-driven.
+- sections/hero.liquid          — brand yellow color (button hover). Text was
+                                  already fully settings-driven.
+- sections/our-story-iwt.liquid,
+  sections/community-iwt.liquid — cream/teal/yellow colors. Text was already
+                                  fully settings-driven.
+
+IMPLEMENTATION NOTES
+---------------------
+- Shopify's {% stylesheet %} tag does NOT evaluate Liquid (confirmed: zero
+  files in this ~300-file theme interpolate inside one). Color settings are
+  injected as CSS custom properties via an inline `style` attribute on each
+  section's root element (the same pattern round 1 already used for
+  `--bftr-bg`), and the {% stylesheet %} block references
+  `var(--color-x, #fallback)` with the fallback equal to today's hex — visual
+  output is unchanged until a merchant edits the color in the editor.
+- about-main.liquid has multiple sibling top-level elements (no single
+  wrapper), so its color variables are emitted once via a small inline
+  `<style>` block scoped to its section classes, rather than repeating an
+  inline style attribute on every element.
+- Footer/category-grid links and collections fall back to today's hardcoded
+  path when the new setting is blank, so nothing breaks if a field is cleared
+  without a replacement value.
+
+OUT OF SCOPE (unchanged)
+--------------------------
+sections/main-policy.liquid, sections/policy-page.liquid, sections/404-main.liquid,
+snippets/seo-schema.liquid, favicon hardcoding (layout/theme.liquid,
+layout/password.liquid, templates/gift_card.liquid), and the footer's
+"Designed by Phillip Henry" credit line.
+
+Note: 404-main.liquid, policy-page.liquid, and main-policy.liquid also
+hardcode the same brand hex values as the sections above. If the client
+changes their brand colors, those three pages will keep the old palette
+until a follow-up pass.
+
+VERIFICATION
+------------
+1. All 9 edited files' {% schema %} blocks validated as parseable JSON.
+2. `shopify theme check` run before and after — 37 warnings across 21 files
+   both times, no new offenses in any edited file.
+3. Every new setting's `default` value diffed against the original hardcoded
+   string/hex and confirmed byte-for-byte identical (including HTML entities
+   like &nbsp;/&ndash;/&middot; and en-dash characters).
+4. Grepped all 9 files for leftover unconverted hardcoded values — none found
+   in live markup (only inside schema `default` fields, as expected, and
+   inside email-bar.liquid's pre-existing dead comment block).
+5. Manual review of theme editor recommended before this ships to confirm the
+   new fields render correctly and live-update the preview.

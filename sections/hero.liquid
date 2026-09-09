@@ -1,4 +1,4 @@
-<section class="brn-hero">
+<section class="brn-hero" style="--color-brand-yellow: {{ section.settings.color_brand_yellow }};">
   <div class="brn-hero__panel">
     {% if section.settings.hero_image_left %}
       <img src="{{ section.settings.hero_image_left | image_url: width: 900 }}" alt="{{ section.settings.hero_image_left.alt | default: 'Polka dot halter dress – Bronceada' }}" loading="eager" fetchpriority="high" width="900" height="1200">
@@ -127,7 +127,7 @@
   }
 
   .brn-hero__btn:hover {
-    background: #FFEF39;
+    background: var(--color-brand-yellow, #FFEF39);
     color: #000;
   }
 
@@ -203,6 +203,16 @@
       "type": "url",
       "id": "button_url",
       "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_yellow",
+      "label": "Brand yellow (button hover)",
+      "default": "#FFEF39"
     }
   ],
   "presets": [

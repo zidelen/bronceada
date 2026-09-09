@@ -6,12 +6,24 @@
   endif
 %}
 
+<style>
+  .brn-about-hero,
+  .brn-about-iwt,
+  .brn-about-vals,
+  .brn-about-visit {
+    --color-brand-yellow: {{ section.settings.color_brand_yellow }};
+    --color-brand-teal: {{ section.settings.color_brand_teal }};
+    --color-brand-cream: {{ section.settings.color_brand_cream }};
+    --color-brand-ink: {{ section.settings.color_brand_ink }};
+  }
+</style>
+
 {%- comment -%} Hero {%- endcomment -%}
 <div class="brn-about-hero" style="--about-hero-bg: url({{ hero_url }})">
   <div class="brn-about-hero__inner">
-    <span class="brn-about-hero__eyebrow">About Bronceada</span>
-    <h1 class="brn-about-hero__h1">Our Story</h1>
-    <p class="brn-about-hero__sub">Hand-picked pieces. Austin roots. One-of-a-kind style.</p>
+    <span class="brn-about-hero__eyebrow">{{ section.settings.hero_eyebrow }}</span>
+    <h1 class="brn-about-hero__h1">{{ section.settings.hero_heading }}</h1>
+    <p class="brn-about-hero__sub">{{ section.settings.hero_subheading }}</p>
   </div>
 </div>
 
@@ -37,10 +49,10 @@
     {% endif %}
   </div>
   <div class="brn-about-iwt__copy">
-    <span class="brn-about-iwt__eyebrow">Who We Are</span>
-    <h2 class="brn-about-iwt__h2">Born From a<br>Mother's Dream</h2>
-    <p class="brn-about-iwt__body">Our story began with a shared passion for fashion that always bonded me and my mother together. Opening a clothing store had always been my mom's dream, but she sacrificed that dream to put her family first. Years later, I am proud to say we finally opened this store together.</p>
-    <p class="brn-about-iwt__body">Through the amazing community we built on TikTok, we've been able to share our journey and connect with people who inspire us every day. Every piece in our collection is carefully sourced with the intention of creating a space where both mothers and daughters can shop together and find pieces they truly love.</p>
+    <span class="brn-about-iwt__eyebrow">{{ section.settings.story_left_eyebrow }}</span>
+    <h2 class="brn-about-iwt__h2">{{ section.settings.story_left_heading | newline_to_br }}</h2>
+    <p class="brn-about-iwt__body">{{ section.settings.story_left_body_1 }}</p>
+    <p class="brn-about-iwt__body">{{ section.settings.story_left_body_2 }}</p>
   </div>
 </section>
 
@@ -49,18 +61,18 @@
   <div class="brn-about-vals__inner">
     <div class="brn-about-vals__item">
       <span class="brn-about-vals__icon">✦</span>
-      <h3 class="brn-about-vals__h3">Hand-Picked</h3>
-      <p class="brn-about-vals__text">Every item is personally selected. Nothing mass-produced, nothing you'll find everywhere else.</p>
+      <h3 class="brn-about-vals__h3">{{ section.settings.value_1_heading }}</h3>
+      <p class="brn-about-vals__text">{{ section.settings.value_1_body }}</p>
     </div>
     <div class="brn-about-vals__item">
       <span class="brn-about-vals__icon">✦</span>
-      <h3 class="brn-about-vals__h3">Austin-Rooted</h3>
-      <p class="brn-about-vals__text">We're a local boutique with Cedar Park roots. Community is everything to us — we shop for our neighbors, not the algorithm.</p>
+      <h3 class="brn-about-vals__h3">{{ section.settings.value_2_heading }}</h3>
+      <p class="brn-about-vals__text">{{ section.settings.value_2_body }}</p>
     </div>
     <div class="brn-about-vals__item">
       <span class="brn-about-vals__icon">✦</span>
-      <h3 class="brn-about-vals__h3">One of a Kind</h3>
-      <p class="brn-about-vals__text">Limited quantities, unique finds. When it's gone, it's gone — that's the point.</p>
+      <h3 class="brn-about-vals__h3">{{ section.settings.value_3_heading }}</h3>
+      <p class="brn-about-vals__text">{{ section.settings.value_3_body }}</p>
     </div>
   </div>
 </section>
@@ -87,9 +99,9 @@
     {% endif %}
   </div>
   <div class="brn-about-iwt__copy">
-    <span class="brn-about-iwt__eyebrow">Our Promise</span>
-    <h2 class="brn-about-iwt__h2">Curated With<br>Intention</h2>
-    <p class="brn-about-iwt__body">We believe clothing is more than fashion — it's confidence, connection, and memories. Our hope is that every styling session and shopping trip becomes a special moment that strengthens bonds, builds confidence, and creates core memories that last forever.</p>
+    <span class="brn-about-iwt__eyebrow">{{ section.settings.story_right_eyebrow }}</span>
+    <h2 class="brn-about-iwt__h2">{{ section.settings.story_right_heading | newline_to_br }}</h2>
+    <p class="brn-about-iwt__body">{{ section.settings.story_right_body }}</p>
   </div>
 </section>
 
@@ -97,20 +109,20 @@
 <section class="brn-about-visit">
   <div class="brn-about-visit__inner">
     <div class="brn-about-visit__copy">
-      <span class="brn-about-visit__eyebrow">Find Us</span>
-      <h2 class="brn-about-visit__h2">Come See Us<br>In Person</h2>
-      <p class="brn-about-visit__text">The best way to experience Bronceada is in person. Stop by and see what's new — our inventory changes constantly.</p>
+      <span class="brn-about-visit__eyebrow">{{ section.settings.visit_eyebrow }}</span>
+      <h2 class="brn-about-visit__h2">{{ section.settings.visit_heading | newline_to_br }}</h2>
+      <p class="brn-about-visit__text">{{ section.settings.visit_body }}</p>
       <div class="brn-about-visit__details">
         <div>
           <p class="brn-about-visit__label">Location</p>
-          <p class="brn-about-visit__info">UL (Upper Level) · Lakeline Mall<br>11200 Lakeline Mall Dr<br>Cedar Park, TX 78613</p>
+          <p class="brn-about-visit__info">{{ section.settings.address | newline_to_br }}</p>
         </div>
         <div>
           <p class="brn-about-visit__label">Hours</p>
           <ul class="brn-about-visit__hours">
-            <li><span>Sunday</span><span>12:00 PM – 6:00 PM</span></li>
-            <li><span>Mon – Thu</span><span>11:00 AM – 8:00 PM</span></li>
-            <li><span>Fri – Sat</span><span>10:00 AM – 9:00 PM</span></li>
+            <li><span>{{ section.settings.hours_1_day }}</span><span>{{ section.settings.hours_1_time }}</span></li>
+            <li><span>{{ section.settings.hours_2_day }}</span><span>{{ section.settings.hours_2_time }}</span></li>
+            <li><span>{{ section.settings.hours_3_day }}</span><span>{{ section.settings.hours_3_time }}</span></li>
           </ul>
         </div>
       </div>
@@ -154,7 +166,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: #FFEF39;
+    color: var(--color-brand-yellow, #FFEF39);
     margin-bottom: 14px;
   }
 
@@ -202,7 +214,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 64px 80px;
-    background: #FFFCEE;
+    background: var(--color-brand-cream, #FFFCEE);
   }
 
   .brn-about-iwt__eyebrow {
@@ -211,7 +223,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #0A9CB5;
+    color: var(--color-brand-teal, #0A9CB5);
     margin-bottom: 14px;
   }
 
@@ -237,7 +249,7 @@
 
   /* ── Values ── */
   .brn-about-vals {
-    background: #111;
+    background: var(--color-brand-ink, #111111);
     padding: 72px 0;
   }
 
@@ -257,7 +269,7 @@
   .brn-about-vals__icon {
     display: block;
     font-size: 1.2rem;
-    color: #FFEF39;
+    color: var(--color-brand-yellow, #FFEF39);
     margin-bottom: 16px;
   }
 
@@ -296,7 +308,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #0A9CB5;
+    color: var(--color-brand-teal, #0A9CB5);
     margin-bottom: 12px;
   }
 
@@ -330,7 +342,7 @@
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #111;
+    color: var(--color-brand-ink, #111111);
     margin: 0 0 8px;
   }
 
@@ -359,7 +371,7 @@
 
   .brn-about-visit__hours li span:first-child {
     font-weight: 500;
-    color: #111;
+    color: var(--color-brand-ink, #111111);
   }
 
   /* ── Responsive ── */
@@ -428,6 +440,210 @@
       "type": "image_picker",
       "id": "story_image_right",
       "label": "Story image (right)"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow",
+      "default": "About Bronceada"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "hero_subheading",
+      "label": "Subheading",
+      "default": "Hand-picked pieces. Austin roots. One-of-a-kind style."
+    },
+    {
+      "type": "header",
+      "content": "Story (image left)"
+    },
+    {
+      "type": "text",
+      "id": "story_left_eyebrow",
+      "label": "Eyebrow",
+      "default": "Who We Are"
+    },
+    {
+      "type": "textarea",
+      "id": "story_left_heading",
+      "label": "Heading",
+      "default": "Born From a\nMother's Dream"
+    },
+    {
+      "type": "textarea",
+      "id": "story_left_body_1",
+      "label": "Body paragraph 1",
+      "default": "Our story began with a shared passion for fashion that always bonded me and my mother together. Opening a clothing store had always been my mom's dream, but she sacrificed that dream to put her family first. Years later, I am proud to say we finally opened this store together."
+    },
+    {
+      "type": "textarea",
+      "id": "story_left_body_2",
+      "label": "Body paragraph 2",
+      "default": "Through the amazing community we built on TikTok, we've been able to share our journey and connect with people who inspire us every day. Every piece in our collection is carefully sourced with the intention of creating a space where both mothers and daughters can shop together and find pieces they truly love."
+    },
+    {
+      "type": "header",
+      "content": "Values"
+    },
+    {
+      "type": "text",
+      "id": "value_1_heading",
+      "label": "Value 1 heading",
+      "default": "Hand-Picked"
+    },
+    {
+      "type": "textarea",
+      "id": "value_1_body",
+      "label": "Value 1 body",
+      "default": "Every item is personally selected. Nothing mass-produced, nothing you'll find everywhere else."
+    },
+    {
+      "type": "text",
+      "id": "value_2_heading",
+      "label": "Value 2 heading",
+      "default": "Austin-Rooted"
+    },
+    {
+      "type": "textarea",
+      "id": "value_2_body",
+      "label": "Value 2 body",
+      "default": "We're a local boutique with Cedar Park roots. Community is everything to us — we shop for our neighbors, not the algorithm."
+    },
+    {
+      "type": "text",
+      "id": "value_3_heading",
+      "label": "Value 3 heading",
+      "default": "One of a Kind"
+    },
+    {
+      "type": "textarea",
+      "id": "value_3_body",
+      "label": "Value 3 body",
+      "default": "Limited quantities, unique finds. When it's gone, it's gone — that's the point."
+    },
+    {
+      "type": "header",
+      "content": "Story (image right)"
+    },
+    {
+      "type": "text",
+      "id": "story_right_eyebrow",
+      "label": "Eyebrow",
+      "default": "Our Promise"
+    },
+    {
+      "type": "textarea",
+      "id": "story_right_heading",
+      "label": "Heading",
+      "default": "Curated With\nIntention"
+    },
+    {
+      "type": "textarea",
+      "id": "story_right_body",
+      "label": "Body text",
+      "default": "We believe clothing is more than fashion — it's confidence, connection, and memories. Our hope is that every styling session and shopping trip becomes a special moment that strengthens bonds, builds confidence, and creates core memories that last forever."
+    },
+    {
+      "type": "header",
+      "content": "Visit CTA"
+    },
+    {
+      "type": "text",
+      "id": "visit_eyebrow",
+      "label": "Eyebrow",
+      "default": "Find Us"
+    },
+    {
+      "type": "textarea",
+      "id": "visit_heading",
+      "label": "Heading",
+      "default": "Come See Us\nIn Person"
+    },
+    {
+      "type": "textarea",
+      "id": "visit_body",
+      "label": "Body text",
+      "default": "The best way to experience Bronceada is in person. Stop by and see what's new — our inventory changes constantly."
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "UL (Upper Level) · Lakeline Mall\n11200 Lakeline Mall Dr\nCedar Park, TX 78613"
+    },
+    {
+      "type": "text",
+      "id": "hours_1_day",
+      "label": "Hours row 1 – day(s)",
+      "default": "Sunday"
+    },
+    {
+      "type": "text",
+      "id": "hours_1_time",
+      "label": "Hours row 1 – time",
+      "default": "12:00 PM – 6:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "hours_2_day",
+      "label": "Hours row 2 – day(s)",
+      "default": "Mon – Thu"
+    },
+    {
+      "type": "text",
+      "id": "hours_2_time",
+      "label": "Hours row 2 – time",
+      "default": "11:00 AM – 8:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "hours_3_day",
+      "label": "Hours row 3 – day(s)",
+      "default": "Fri – Sat"
+    },
+    {
+      "type": "text",
+      "id": "hours_3_time",
+      "label": "Hours row 3 – time",
+      "default": "10:00 AM – 9:00 PM"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_yellow",
+      "label": "Brand yellow",
+      "default": "#FFEF39"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_teal",
+      "label": "Brand teal",
+      "default": "#0A9CB5"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_cream",
+      "label": "Brand cream (section background)",
+      "default": "#FFFCEE"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_ink",
+      "label": "Brand near-black (headings/text)",
+      "default": "#111111"
     }
   ]
 }

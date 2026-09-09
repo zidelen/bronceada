@@ -1,6 +1,6 @@
 {% assign col = collections[section.settings.collection] %}
 
-<section class="brn-na">
+<section class="brn-na" style="--color-brand-teal: {{ section.settings.color_brand_teal }}; --color-brand-ink: {{ section.settings.color_brand_ink }}; --color-brand-yellow: {{ section.settings.color_brand_yellow }};">
   <div class="brn-na__inner">
 
     <div class="brn-na__hdr">
@@ -8,7 +8,7 @@
         <span class="brn-na__eyebrow">{{ section.settings.eyebrow }}</span>
         <h2 class="brn-na__h2">{{ section.settings.heading }}</h2>
       </div>
-      <a href="{{ col.url }}" class="brn-na__view-all">View All</a>
+      <a href="{{ col.url }}" class="brn-na__view-all">{{ section.settings.view_all_label }}</a>
     </div>
 
     <div class="brn-na__grid">
@@ -68,7 +68,7 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #0A9CB5;
+    color: var(--color-brand-teal, #0A9CB5);
     margin-bottom: 7px;
   }
 
@@ -87,17 +87,17 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #111;
+    color: var(--color-brand-ink, #111111);
     text-decoration: none;
-    border-bottom: 1.5px solid #111;
+    border-bottom: 1.5px solid var(--color-brand-ink, #111111);
     padding-bottom: 2px;
     transition: color 0.2s, border-color 0.2s;
     white-space: nowrap;
   }
 
   .brn-na__view-all:hover {
-    color: #0A9CB5;
-    border-color: #0A9CB5;
+    color: var(--color-brand-teal, #0A9CB5);
+    border-color: var(--color-brand-teal, #0A9CB5);
   }
 
   .brn-na__grid {
@@ -141,7 +141,7 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background: #FFEF39;
+    background: var(--color-brand-yellow, #FFEF39);
     color: #000;
     font-size: 0.67rem;
     font-weight: 700;
@@ -156,7 +156,7 @@
     font-size: 0.92rem;
     font-weight: 500;
     margin: 0 0 4px;
-    color: #111;
+    color: var(--color-brand-ink, #111111);
     text-decoration: none;
   }
 
@@ -216,6 +216,34 @@
       "id": "heading",
       "label": "Heading",
       "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "\"View All\" link label",
+      "default": "View All"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_teal",
+      "label": "Brand teal",
+      "default": "#0A9CB5"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_ink",
+      "label": "Brand near-black (headings/text)",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "color_brand_yellow",
+      "label": "Brand yellow (\"New\" badge)",
+      "default": "#FFEF39"
     }
   ],
   "presets": [
