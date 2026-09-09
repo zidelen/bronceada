@@ -1,6 +1,10 @@
 
 {% liquid
-  assign bg_url = 'lifestyle-beach-banner.jpg' | asset_url
+  if section.settings.background_image
+    assign bg_url = section.settings.background_image | image_url: width: 1920
+  else
+    assign bg_url = 'lifestyle-beach-banner.jpg' | asset_url
+  endif
 %}
 
 <div
@@ -271,6 +275,16 @@
   "enabled_on": {
     "groups": ["footer"]
   },
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    }
+  ]
 }
 {% endschema %}
