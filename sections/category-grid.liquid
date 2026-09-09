@@ -7,13 +7,23 @@
   <div class="brn-cat__grid">
 
     <a href="{{ routes.root_url }}collections/dress-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Dresses.jpg' | asset_url }}"
-        alt="Dresses – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
+      {% if section.settings.tile_image_1 %}
+        <img
+          src="{{ section.settings.tile_image_1 | image_url: width: 800 }}"
+          alt="{{ section.settings.tile_image_1.alt | default: 'Dresses – Bronceada' }}"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% else %}
+        <img
+          src="{{ 'Dresses.jpg' | asset_url }}"
+          alt="Dresses – Bronceada"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
         <span class="brn-cat__name">Dresses</span>
@@ -22,13 +32,23 @@
     </a>
 
     <a href="{{ routes.root_url }}collections/the-floral-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}"
-        alt="Sets – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
+      {% if section.settings.tile_image_2 %}
+        <img
+          src="{{ section.settings.tile_image_2 | image_url: width: 800 }}"
+          alt="{{ section.settings.tile_image_2.alt | default: 'Sets – Bronceada' }}"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% else %}
+        <img
+          src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}"
+          alt="Sets – Bronceada"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
         <span class="brn-cat__name">Sets</span>
@@ -37,13 +57,23 @@
     </a>
 
     <a href="{{ routes.root_url }}collections/statement-summer-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Tops.jpg' | asset_url }}"
-        alt="Tops & Basics – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
+      {% if section.settings.tile_image_3 %}
+        <img
+          src="{{ section.settings.tile_image_3 | image_url: width: 800 }}"
+          alt="{{ section.settings.tile_image_3.alt | default: 'Tops & Basics – Bronceada' }}"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% else %}
+        <img
+          src="{{ 'Tops.jpg' | asset_url }}"
+          alt="Tops & Basics – Bronceada"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
         <span class="brn-cat__name">Tops &amp; Basics</span>
@@ -52,13 +82,23 @@
     </a>
 
     <a href="{{ routes.root_url }}collections/jewelry-collection" class="brn-cat__tile">
-      <img
-        src="{{ 'Jewlery.jpg' | asset_url }}"
-        alt="Accessories – Bronceada"
-        loading="lazy"
-        width="800"
-        height="1060"
-      >
+      {% if section.settings.tile_image_4 %}
+        <img
+          src="{{ section.settings.tile_image_4 | image_url: width: 800 }}"
+          alt="{{ section.settings.tile_image_4.alt | default: 'Accessories – Bronceada' }}"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% else %}
+        <img
+          src="{{ 'Jewlery.jpg' | asset_url }}"
+          alt="Accessories – Bronceada"
+          loading="lazy"
+          width="800"
+          height="1060"
+        >
+      {% endif %}
       <div class="brn-cat__overlay"></div>
       <div class="brn-cat__body">
         <span class="brn-cat__name">Accessories</span>
@@ -196,7 +236,32 @@
   "name": "Category Grid",
   "tag": "div",
   "class": "section-wrapper",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_image_1",
+      "label": "Dresses image"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_image_2",
+      "label": "Sets image"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_image_3",
+      "label": "Tops & Basics image"
+    },
+    {
+      "type": "image_picker",
+      "id": "tile_image_4",
+      "label": "Accessories image"
+    }
+  ],
   "presets": [
     {
       "name": "Category Grid"

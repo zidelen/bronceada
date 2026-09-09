@@ -1,5 +1,9 @@
 {% liquid
-  assign hero_url = 'lifestyle-beach-banner.jpg' | asset_url
+  if section.settings.hero_background_image
+    assign hero_url = section.settings.hero_background_image | image_url: width: 1920
+  else
+    assign hero_url = 'lifestyle-beach-banner.jpg' | asset_url
+  endif
 %}
 
 {%- comment -%} Hero {%- endcomment -%}
@@ -14,13 +18,23 @@
 {%- comment -%} Story – image left {%- endcomment -%}
 <section class="brn-about-iwt">
   <div class="brn-about-iwt__img">
-    <img
-      src="{{ 'Dresses.jpg' | asset_url }}"
-      alt="Curated dresses and women's clothing at Bronceada boutique – Cedar Park, TX"
-      loading="lazy"
-      width="900"
-      height="900"
-    >
+    {% if section.settings.story_image_left %}
+      <img
+        src="{{ section.settings.story_image_left | image_url: width: 900 }}"
+        alt="{{ section.settings.story_image_left.alt | default: 'Curated dresses and women\'s clothing at Bronceada boutique – Cedar Park, TX' }}"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% else %}
+      <img
+        src="{{ 'Dresses.jpg' | asset_url }}"
+        alt="Curated dresses and women's clothing at Bronceada boutique – Cedar Park, TX"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% endif %}
   </div>
   <div class="brn-about-iwt__copy">
     <span class="brn-about-iwt__eyebrow">Who We Are</span>
@@ -54,13 +68,23 @@
 {%- comment -%} Story – image right {%- endcomment -%}
 <section class="brn-about-iwt brn-about-iwt--rev">
   <div class="brn-about-iwt__img">
-    <img
-      src="{{ 'Jewlery.jpg' | asset_url }}"
-      alt="Bronceada jewelry and accessories"
-      loading="lazy"
-      width="900"
-      height="900"
-    >
+    {% if section.settings.story_image_right %}
+      <img
+        src="{{ section.settings.story_image_right | image_url: width: 900 }}"
+        alt="{{ section.settings.story_image_right.alt | default: 'Bronceada jewelry and accessories' }}"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% else %}
+      <img
+        src="{{ 'Jewlery.jpg' | asset_url }}"
+        alt="Bronceada jewelry and accessories"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% endif %}
   </div>
   <div class="brn-about-iwt__copy">
     <span class="brn-about-iwt__eyebrow">Our Promise</span>
@@ -385,6 +409,26 @@
   "name": "About",
   "tag": "div",
   "class": "section-wrapper",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_background_image",
+      "label": "Hero background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image_left",
+      "label": "Story image (left)"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image_right",
+      "label": "Story image (right)"
+    }
+  ]
 }
 {% endschema %}

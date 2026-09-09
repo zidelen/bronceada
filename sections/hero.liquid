@@ -1,11 +1,19 @@
 <section class="brn-hero">
   <div class="brn-hero__panel">
-    <img src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}" alt="Polka dot halter dress – Bronceada" loading="eager" fetchpriority="high" width="900" height="1200">
+    {% if section.settings.hero_image_left %}
+      <img src="{{ section.settings.hero_image_left | image_url: width: 900 }}" alt="{{ section.settings.hero_image_left.alt | default: 'Polka dot halter dress – Bronceada' }}" loading="eager" fetchpriority="high" width="900" height="1200">
+    {% else %}
+      <img src="{{ 'polka-dot-halter-dress.jpg' | asset_url }}" alt="Polka dot halter dress – Bronceada" loading="eager" fetchpriority="high" width="900" height="1200">
+    {% endif %}
     <div class="brn-hero__panel-overlay"></div>
   </div>
 
   <div class="brn-hero__panel">
-    <img src="{{ 'white-eyelet-dress-austin.jpg' | asset_url }}" alt="White eyelet dress in downtown Austin – Bronceada" loading="eager" width="900" height="1200">
+    {% if section.settings.hero_image_right %}
+      <img src="{{ section.settings.hero_image_right | image_url: width: 900 }}" alt="{{ section.settings.hero_image_right.alt | default: 'White eyelet dress in downtown Austin – Bronceada' }}" loading="eager" width="900" height="1200">
+    {% else %}
+      <img src="{{ 'white-eyelet-dress-austin.jpg' | asset_url }}" alt="White eyelet dress in downtown Austin – Bronceada" loading="eager" width="900" height="1200">
+    {% endif %}
     <div class="brn-hero__panel-overlay"></div>
   </div>
 
@@ -145,6 +153,20 @@
   "tag": "div",
   "class": "section-wrapper",
   "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_left",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_right",
+      "label": "Right image"
+    },
     {
       "type": "header",
       "content": "Text"

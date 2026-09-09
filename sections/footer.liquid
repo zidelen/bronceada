@@ -16,7 +16,11 @@
 
       <div class="bftr-brand">
         <div class="bftr-logo">
-          <img src="{{ 'BronceadaLogo.png' | asset_url }}" alt="Bronceada" width="160" height="38" style="height:38px;width:auto;filter:brightness(0) invert(1);">
+          {% if settings.logo %}
+            <img src="{{ settings.logo | image_url: width: 320 }}" alt="{{ settings.logo.alt | default: 'Bronceada' }}" width="160" height="38" style="height:38px;width:auto;filter:brightness(0) invert(1);">
+          {% else %}
+            <img src="{{ 'BronceadaLogo.png' | asset_url }}" alt="Bronceada" width="160" height="38" style="height:38px;width:auto;filter:brightness(0) invert(1);">
+          {% endif %}
         </div>
         <p class="bftr-desc">One-of-a-kind pieces, hand-picked and brought straight to Austin. Find us at Lakeline Mall in Cedar Park, TX.</p>
         <div class="bftr-social">

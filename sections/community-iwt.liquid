@@ -1,13 +1,23 @@
 <div class="brn-iwt brn-iwt--rev">
 
   <div class="brn-iwt__img">
-    <img
-      src="{{ 'Jewlery.jpg' | asset_url }}"
-      alt="Bronceada Community"
-      loading="lazy"
-      width="900"
-      height="900"
-    >
+    {% if section.settings.image %}
+      <img
+        src="{{ section.settings.image | image_url: width: 900 }}"
+        alt="{{ section.settings.image.alt | default: 'Bronceada Community' }}"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% else %}
+      <img
+        src="{{ 'Jewlery.jpg' | asset_url }}"
+        alt="Bronceada Community"
+        loading="lazy"
+        width="900"
+        height="900"
+      >
+    {% endif %}
   </div>
 
   <div class="brn-iwt__copy">
@@ -155,6 +165,19 @@
   "tag": "div",
   "class": "section-wrapper",
   "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
     {
       "type": "text",
       "id": "eyebrow",
