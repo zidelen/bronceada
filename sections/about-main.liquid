@@ -4,6 +4,7 @@
   else
     assign hero_url = 'lifestyle-beach-banner.jpg' | asset_url
   endif
+  assign alt_left = "Curated dresses and women's clothing at Bronceada boutique – Cedar Park, TX"
 %}
 
 <style>
@@ -33,7 +34,7 @@
     {% if section.settings.story_image_left %}
       <img
         src="{{ section.settings.story_image_left | image_url: width: 900 }}"
-        alt="{{ section.settings.story_image_left.alt | default: 'Curated dresses and women\'s clothing at Bronceada boutique – Cedar Park, TX' }}"
+        alt="{{ section.settings.story_image_left.alt | default: alt_left }}"
         loading="lazy"
         width="900"
         height="900"
