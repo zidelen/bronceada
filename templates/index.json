@@ -26,6 +26,7 @@
       "type": "category-grid",
       "name": "Category Grid",
       "settings": {
+        "tile_image_2": "shopify://shop_images/IMG_0811.heic",
         "eyebrow": "Find Your Look",
         "heading": "Shop by Category",
         "tile_1_name": "Dresses",
