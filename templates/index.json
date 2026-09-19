@@ -365,7 +365,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "the-city-chic-collection",
+        "collection": "the-comfort-collection",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
