@@ -63,7 +63,7 @@
       "type": "new-arrivals",
       "name": "New Arrivals",
       "settings": {
-        "collection": "new-arrivals",
+        "collection": "the-city-chic-collection",
         "max_products": 4,
         "eyebrow": "Just Landed",
         "heading": "New Arrivals",
