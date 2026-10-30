@@ -63,7 +63,7 @@
       "type": "new-arrivals",
       "name": "New Arrivals",
       "settings": {
-        "collection": "the-city-chic-collection",
+        "collection": "midnight-dreams-collection",
         "max_products": 4,
         "eyebrow": "Just Landed",
         "heading": "New Arrivals",
@@ -365,7 +365,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "the-october-edit",
+        "collection": "sale",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
