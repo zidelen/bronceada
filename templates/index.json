@@ -63,7 +63,7 @@
       "type": "new-arrivals",
       "name": "New Arrivals",
       "settings": {
-        "collection": "midnight-dreams-collection",
+        "collection": "new-arrivals",
         "max_products": 4,
         "eyebrow": "Just Landed",
         "heading": "New Arrivals",
@@ -365,7 +365,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "sale",
+        "collection": "pink-friday-deals",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
