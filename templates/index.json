@@ -15,7 +15,7 @@
       "settings": {
         "hero_image_left": "shopify://shop_images/IMG_0547.heic",
         "eyebrow": "Boutique · NEW STYLES EVERY WEEK",
-        "heading": "Your next favorite outfit is here.",
+        "heading": "Perfect Holidays Gifts & Outfits",
         "subheading": "Hand-picked styles in limited quantities. Once they're gone, they're gone.",
         "button_label": "Shop New Arrivals",
         "button_url": "/collections/new-arrivals",
@@ -63,10 +63,10 @@
       "type": "new-arrivals",
       "name": "New Arrivals",
       "settings": {
-        "collection": "new-arrivals",
+        "collection": "pink-friday-deals",
         "max_products": 4,
         "eyebrow": "Just Landed",
-        "heading": "New Arrivals",
+        "heading": "Black Friday Deals",
         "view_all_label": "View All",
         "color_brand_teal": "#0a9cb5",
         "color_brand_ink": "#111111",
@@ -131,7 +131,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}&nbsp;</h3>",
+                "text": "<h3>NEW ARRIVALS</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -365,7 +365,7 @@
       },
       "name": "Featured collection",
       "settings": {
-        "collection": "pink-friday-deals",
+        "collection": "new-arrivals",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
